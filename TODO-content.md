@@ -10,21 +10,30 @@ To find them all in the source:
 grep -rn "data-placeholder\|ph-lines\|ph-note\|ph-media" src/pages/
 ```
 
+## Already known
+
+- Meetings: **every Saturday at 19:00**. Wired into the homepage schedule, the
+  contact page, the footer and the schema on the homepage.
+- YouTube: **@krscanskazajednicasibenik**. Linked from the video messages page,
+  the homepage, the footer and `sameAs` in the schema.
+- Location: the Google Business Profile pin (43.7366984, 15.8918039) is
+  embedded on the contact page and linked from the footer.
+
 ## Needed from the community
 
 **Identity and contact**
 - [ ] Full legal name of the community (for the donation page and schema)
-- [ ] Street address of the hall
+- [ ] Street address of the hall - the map pin is in, but the written address
+      is still a placeholder in the footer, the contact page and the schema
 - [ ] Phone number
 - [ ] Confirm `info@krscanskazajednicasibenik.hr` is the right inbox
-- [ ] Google Maps embed for the contact page
 - [ ] One-line description of the community (used in the footer and meta tags)
 
 **Homepage**
 - [ ] Intro paragraph under the main heading
-- [ ] Actual meeting days and times
 - [ ] Bible verse for the quote block
 - [ ] Photograph of the community
+- [ ] Any meeting day besides Saturday, if there is one
 
 **Novosti**
 - [ ] First few notices: title, date, short text, image
@@ -32,15 +41,13 @@ grep -rn "data-placeholder\|ph-lines\|ph-note\|ph-media" src/pages/
       screen later
 
 **O nama**
-- [ ] Short description for the hub page
 - [ ] Povijest: key years with what happened, old photographs if any
 - [ ] Vodstvo: names, roles, short bios, portrait photos
 - [ ] Vjerovanje: the statements of faith with Bible references
-- [ ] Decide whether svjedočanstva becomes a fourth sub-page
+- [ ] Decide whether svjedočanstva becomes a fourth item in the dropdown
 
 **Video poruke**
-- [ ] Where the recordings live (YouTube channel is simplest)
-- [ ] Then: embed or link the cards to the real videos
+- [ ] Which videos from the YouTube channel go on the page, with title and date
 
 **Knjižnica**
 - [ ] Book list: title, author, short description, cover image

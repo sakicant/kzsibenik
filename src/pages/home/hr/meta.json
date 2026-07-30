@@ -1,7 +1,7 @@
 {
   "slug": "",
   "title": "Kršćanska zajednica Šibenik",
-  "description": "Kršćanska zajednica Šibenik - okupljanja, video poruke, knjižnica i obavijesti zajednice.",
+  "description": "Kršćanska zajednica Šibenik - okupljanja subotom u 19 sati, video poruke, knjižnica i obavijesti zajednice.",
   "body_class": "page-home",
   "schema": {
     "@context": "https://schema.org",
@@ -16,6 +16,24 @@
       "addressLocality": "Šibenik",
       "postalCode": "22000",
       "addressCountry": "HR"
-    }
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 43.7366984,
+      "longitude": 15.8918039
+    },
+    "hasMap": "https://maps.google.com/?cid=8294334769570048758",
+    "sameAs": [
+      "https://www.youtube.com/@krscanskazajednicasibenik",
+      "https://maps.google.com/?cid=8294334769570048758"
+    ],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "https://schema.org/Saturday",
+        "opens": "19:00",
+        "closes": "21:00"
+      }
+    ]
   }
 }

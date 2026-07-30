@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css?v=44a541677d">
+<link rel="stylesheet" href="/styles.css?v=2efba13a11">
 <script>document.documentElement.className+=" js-reveal";</script>
 <script type="application/ld+json">
 {
@@ -57,13 +57,13 @@
     </a>
 
     <nav class="nav" aria-label="Glavna navigacija">
+      <a href="/">Naslovna</a>
       <a href="/novosti/">Novosti</a>
       <div class="nav-drop" data-drop>
         <button type="button" class="nav-drop-btn" aria-expanded="false" aria-controls="dropONama">
           O nama <span class="caret" aria-hidden="true"></span>
         </button>
         <div class="nav-drop-menu" id="dropONama">
-          <a href="/o-nama/">Pregled</a>
           <a href="/o-nama/povijest/">Povijest</a>
           <a href="/o-nama/vodstvo/">Vodstvo crkve</a>
           <a href="/o-nama/vjerovanje/">Vjerovanje</a>
@@ -71,8 +71,8 @@
       </div>
       <a href="/video-poruke/">Video poruke</a>
       <a href="/knjiznica/">Knjižnica</a>
+      <a href="/doniraj/">Doniraj</a>
       <a class="is-active" aria-current="page" href="/kontakt/">Kontakt</a>
-      <a href="/doniraj/" class="nav-cta">Doniraj</a>
       <div class="lang-switch" role="group" aria-label="Jezik" data-ctx="desktop"><a href="/kontakt/" class="lang-item is-active" hreflang="hr" lang="hr" aria-current="true">HR</a><span class="lang-sep" aria-hidden="true"></span><a href="/en/contact/" class="lang-item" hreflang="en" lang="en">EN</a></div>
     </nav>
 
@@ -82,16 +82,16 @@
   </div>
 
   <nav class="mobile-nav" id="mobileNav" aria-label="Mobilna navigacija" hidden>
+    <a href="/">Naslovna</a>
     <a href="/novosti/">Novosti</a>
     <span class="mobile-group">O nama</span>
-    <a href="/o-nama/" class="mobile-sub">Pregled</a>
     <a href="/o-nama/povijest/" class="mobile-sub">Povijest</a>
     <a href="/o-nama/vodstvo/" class="mobile-sub">Vodstvo crkve</a>
     <a href="/o-nama/vjerovanje/" class="mobile-sub">Vjerovanje</a>
     <a href="/video-poruke/">Video poruke</a>
     <a href="/knjiznica/">Knjižnica</a>
+    <a href="/doniraj/">Doniraj</a>
     <a class="is-active" aria-current="page" href="/kontakt/">Kontakt</a>
-    <a href="/doniraj/" class="mobile-cta">Doniraj</a>
     <div class="lang-switch" role="group" aria-label="Jezik" data-ctx="mobile"><a href="/kontakt/" class="lang-item is-active" hreflang="hr" lang="hr" aria-current="true">HR</a><span class="lang-sep" aria-hidden="true"></span><a href="/en/contact/" class="lang-item" hreflang="en" lang="en">EN</a></div>
   </nav>
 </header>
@@ -165,12 +165,26 @@
             </div>
             <div>
               <dt>Okupljanja</dt>
-              <dd data-placeholder>dani i vremena dolaze ovdje</dd>
+              <dd>Subotom u 19 sati</dd>
+            </div>
+            <div>
+              <dt>Pratite nas</dt>
+              <dd><a href="https://www.youtube.com/@krscanskazajednicasibenik" target="_blank" rel="noopener">YouTube kanal</a></dd>
             </div>
           </dl>
         </div>
 
-        <div class="ph-media is-wide" style="min-height:280px">Karta dolazi ovdje</div>
+        <div class="map-frame">
+          <iframe
+            src="https://maps.google.com/maps?q=43.7366984,15.8918039&amp;hl=hr&amp;z=17&amp;output=embed"
+            title="Kršćanska zajednica Šibenik na Google karti"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </div>
+        <p class="form-note" style="margin-top:12px">
+          <a href="https://maps.google.com/?cid=8294334769570048758" target="_blank" rel="noopener">Otvorite u Google kartama</a>
+        </p>
       </div>
     </div>
 
@@ -184,12 +198,13 @@
     <div class="footer-brand">
       <img src="/assets/img/logo-white.png" srcset="/assets/img/logo-white.png 1x, /assets/img/logo-white-2x.png 2x" alt="Kršćanska zajednica Šibenik" width="120" height="127" class="footer-logo">
       <p class="footer-tagline" data-placeholder>Kratka rečenica o zajednici dolazi ovdje.</p>
+      <p class="footer-times">Okupljanja: subotom u 19 sati</p>
     </div>
 
     <div class="footer-col">
       <h3>Stranice</h3>
+      <a href="/">Naslovna</a>
       <a href="/novosti/">Novosti i obavijesti</a>
-      <a href="/o-nama/">O nama</a>
       <a href="/video-poruke/">Video poruke</a>
       <a href="/knjiznica/">Knjižnica</a>
       <a href="/doniraj/">Doniraj</a>
@@ -206,9 +221,11 @@
     <div class="footer-col">
       <h3>Kontakt</h3>
       <span class="footer-muted" data-placeholder>Adresa dolazi ovdje</span>
-      <span class="footer-muted" data-placeholder>22000 Šibenik, Hrvatska</span>
+      <span class="footer-muted">22000 Šibenik, Hrvatska</span>
       <a href="mailto:info@krscanskazajednicasibenik.hr">info@krscanskazajednicasibenik.hr</a>
       <span class="footer-muted" data-placeholder>Telefon dolazi ovdje</span>
+      <a href="https://www.youtube.com/@krscanskazajednicasibenik" target="_blank" rel="noopener">YouTube kanal</a>
+      <a href="https://maps.google.com/?cid=8294334769570048758" target="_blank" rel="noopener">Google karta</a>
     </div>
   </div>
 
@@ -218,6 +235,6 @@
   </div>
 </footer>
 
-<script src="/script.js?v=44a541677d" defer></script>
+<script src="/script.js?v=2efba13a11" defer></script>
 </body>
 </html>

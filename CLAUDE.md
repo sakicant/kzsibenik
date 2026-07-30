@@ -11,6 +11,10 @@ Website for Kršćanska zajednica Šibenik (krscanskazajednicasibenik.hr).
   to that language's home page.
 - Croatian slugs are Croatian words (`o-nama/povijest`), English slugs are
   English words (`about/history`). They are paired by page-id, not by slug.
+- There is deliberately **no page at `/o-nama/`**. "O nama" in the header is a
+  dropdown with three children and nothing else. Do not link to `/o-nama/`.
+- Header order is fixed: Naslovna, Novosti, O nama, Video poruke, Knjižnica,
+  Doniraj, Kontakt. No item is styled as a call-to-action button.
 - All colour lives in the `:root` block at the top of `styles.css`. The brand
   colours are not decided yet, so do not hardcode a hex value anywhere else.
 - Body copy is not written yet. Placeholders are deliberate and visible:

@@ -1,7 +1,7 @@
 {
   "slug": "",
   "title": "Christian Community Šibenik",
-  "description": "Christian Community Šibenik - gatherings, video messages, library and community news.",
+  "description": "Christian Community Šibenik - gatherings on Saturdays at 7 pm, video messages, library and community news.",
   "body_class": "page-home",
   "schema": {
     "@context": "https://schema.org",
@@ -17,6 +17,24 @@
       "addressLocality": "Šibenik",
       "postalCode": "22000",
       "addressCountry": "HR"
-    }
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 43.7366984,
+      "longitude": 15.8918039
+    },
+    "hasMap": "https://maps.google.com/?cid=8294334769570048758",
+    "sameAs": [
+      "https://www.youtube.com/@krscanskazajednicasibenik",
+      "https://maps.google.com/?cid=8294334769570048758"
+    ],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "https://schema.org/Saturday",
+        "opens": "19:00",
+        "closes": "21:00"
+      }
+    ]
   }
 }

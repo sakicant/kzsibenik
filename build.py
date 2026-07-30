@@ -37,7 +37,6 @@ LANGUAGE_LABELS = {"hr": "HR", "en": "EN"}
 PRIORITY_BY_PAGE = {
     "home": "1.0",
     "novosti": "0.9",
-    "o-nama": "0.9",
     "video-poruke": "0.8",
     "kontakt": "0.8",
     "doniraj": "0.7",
@@ -159,13 +158,13 @@ def mark_active_nav(header_html, slug, lang):
     page, so the current tab is visibly marked. Matching is exact, otherwise
     /o-nama/ would light up every child in the dropdown. Marking the dropdown
     button itself is left to script.js, which looks for aria-current inside."""
-    if not slug:
-        return header_html
     prefix = "" if lang == DEFAULT_LANG else f"/{lang}"
-    needle = f'href="{prefix}/{slug}/"'
+    # The home page has an empty slug, so its nav link is just the prefix root.
+    needle = f'href="{prefix}/{slug}/"' if slug else f'href="{prefix}/"'
     out = []
     for line in header_html.split("\n"):
-        if needle in line and "lang-item" not in line:
+        # The logo also points at the home page; it is not a nav item.
+        if needle in line and "lang-item" not in line and 'class="brand"' not in line:
             line = line.replace("<a ", '<a aria-current="page" ', 1)
             if 'class="' in line:
                 line = line.replace('class="', 'class="is-active ', 1)
