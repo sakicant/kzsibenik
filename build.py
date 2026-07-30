@@ -37,6 +37,7 @@ LANGUAGE_LABELS = {"hr": "HR", "en": "EN"}
 PRIORITY_BY_PAGE = {
     "home": "1.0",
     "novosti": "0.9",
+    "o-nama": "0.9",
     "video-poruke": "0.8",
     "kontakt": "0.8",
     "doniraj": "0.7",

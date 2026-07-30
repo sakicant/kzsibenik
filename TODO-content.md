@@ -37,8 +37,10 @@ grep -rn "data-placeholder\|ph-lines\|ph-note\|ph-media" src/pages/
 
 **Novosti**
 - [ ] First few notices: title, date, short text, image
-- [ ] Decide: notices edited by hand in `src/pages/novosti/`, or a small admin
-      screen later
+- Decided: notices and YouTube videos get managed through an admin panel at
+      `/isusjekralj/`. Spec in [plans/admin-panel.md](plans/admin-panel.md).
+      Needs PHP and MySQL on the FTP host, so it cannot be built against the
+      Vercel preview.
 
 **O nama**
 - [ ] Povijest: key years with what happened, old photographs if any
@@ -50,9 +52,11 @@ grep -rn "data-placeholder\|ph-lines\|ph-note\|ph-media" src/pages/
 - [ ] Which videos from the YouTube channel go on the page, with title and date
 
 **Knjižnica**
-- [ ] Book list: title, author, short description, cover image
-- [ ] Later, separately: internal stock screen for the librarian - copies held,
-      copies free, who borrowed what. Not public.
+- [ ] Book list: title, author, short description, cover image. Static, edited
+      in `src/pages/knjiznica/`.
+- [ ] Settle whether the librarian role in the admin panel is still wanted -
+      the brief asks for a library-only role but also says the library stays
+      static. See the open question in `plans/admin-panel.md`.
 
 **Doniraj**
 - [ ] Recipient name, IBAN, model and reference number, payment description

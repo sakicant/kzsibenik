@@ -147,6 +147,42 @@ body::after {
   html { scroll-behavior: auto; }
 }
 
+/* Š watermarks. Every section past the hero carries one, cycling left, right,
+   then centre, so the mark reappears down the page without ever repeating in
+   the same spot. They scroll with the content and sit behind it; cards and
+   panels cover them, so the mark only shows through in the margins.
+   overflow:hidden keeps the off-canvas ones from widening the page. */
+main > section { position: relative; overflow: hidden; }
+main > section:not(.hero)::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: clamp(220px, 26vw, 400px);
+  aspect-ratio: 1;
+  background: url("/assets/img/mark-black.png") center / contain no-repeat;
+  opacity: .04;
+  pointer-events: none;
+}
+main > section:nth-of-type(3n+2)::after { left: -7%;  top: 8%; }
+main > section:nth-of-type(3n)::after   { right: -7%; top: 24%; }
+main > section:nth-of-type(3n+1)::after { left: 50%; transform: translateX(-50%); top: 14%; }
+
+/* On the dark footer the mark is white and sits centred behind the columns. */
+.site-footer { position: relative; overflow: hidden; }
+.site-footer::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  right: -4%;
+  top: 12%;
+  width: clamp(200px, 22vw, 340px);
+  aspect-ratio: 1;
+  background: url("/assets/img/mark-white.png") center / contain no-repeat;
+  opacity: .05;
+  pointer-events: none;
+}
+.site-footer .wrap { position: relative; z-index: 1; }
+
 /* --------------------------------------------------------------------------
    4. Layout helpers
    -------------------------------------------------------------------------- */
@@ -253,8 +289,23 @@ body::after {
 .nav-drop.is-current .nav-drop-btn { color: var(--ink); font-weight: 600; }
 .nav > a.is-active { background: rgba(23, 22, 20, .055); }
 
-/* Dropdown */
-.nav-drop { position: relative; }
+/* Dropdown. Two shapes: a plain button that only opens the menu (Multimedija),
+   or a link to a real page plus a small caret button that opens it (O nama). */
+.nav-drop { position: relative; display: inline-flex; align-items: center; }
+a.nav-drop-btn { padding-right: 4px; }
+.nav-drop-toggle {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: var(--radius-sm);
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.nav-drop-toggle:hover { background: rgba(23, 22, 20, .05); color: var(--ink); }
 .caret {
   width: 7px; height: 7px;
   border-right: 1.6px solid currentColor;
@@ -362,6 +413,8 @@ body::after {
   text-transform: uppercase;
   color: var(--muted-soft);
 }
+/* A section heading in the mobile menu that is itself a page. */
+.mobile-group-link { font-weight: 600 !important; border-bottom: 0 !important; padding-bottom: 6px !important; }
 .mobile-sub { padding-left: 16px !important; font-size: .96rem !important; }
 .mobile-nav .lang-switch {
   margin: 20px 0 0;
@@ -492,6 +545,28 @@ a.card:hover { transform: translateY(-3px); }
   margin-bottom: 1.9em;
 }
 .hero .btn-row { margin-top: 4px; }
+
+/* Standing detail under the hero copy - currently the meeting time. */
+.hero-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 24px;
+  padding: 9px 18px;
+  border: 1px solid var(--line-firm);
+  border-radius: 999px;
+  background: var(--panel-strong);
+  font-size: .92rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.hero-meta::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
 
 .hero-compact { padding: clamp(44px, 5vw, 74px) 0 clamp(26px, 3vw, 40px); }
 .hero-compact h1 { margin-bottom: .3em; }
@@ -872,6 +947,91 @@ a.card:hover { transform: translateY(-3px); }
   background: linear-gradient(90deg, transparent, var(--line-firm) 22%, var(--line-firm) 78%, transparent);
 }
 
+/* Video feature - carousel on one side, the pitch and links on the other */
+.video-feature-grid {
+  display: grid;
+  gap: clamp(26px, 3.4vw, 52px);
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, .85fr);
+  align-items: center;
+}
+
+.video-carousel { position: relative; min-width: 0; }
+.carousel-track {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-bottom: 6px;
+  /* The track scrolls on touch; the arrows are the desktop affordance. */
+  scrollbar-width: none;
+}
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-track > * {
+  flex: 0 0 min(300px, 82%);
+  scroll-snap-align: start;
+}
+
+.video-tile {
+  padding: 0;
+  overflow: hidden;
+  background: var(--panel-strong);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.video-tile:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.video-tile .ph-media { border: 0; border-radius: 0; }
+.video-tile-body { padding: 16px 18px 20px; }
+.video-tile-body h3 { font-size: 1.02rem; margin-bottom: .4em; }
+
+.duration {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 3px 8px;
+  border-radius: 5px;
+  background: rgba(23, 22, 20, .78);
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 34%;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-firm);
+  border-radius: 50%;
+  background: var(--panel-solid);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  color: var(--ink);
+  transition: background .18s ease, opacity .18s ease, transform .18s ease;
+}
+.carousel-btn:hover { background: #fff; transform: scale(1.06); }
+.carousel-btn[disabled] { opacity: .3; cursor: default; transform: none; }
+.carousel-btn.prev { left: -18px; }
+.carousel-btn.next { right: -18px; }
+.carousel-btn span {
+  width: 9px; height: 9px;
+  border-top: 1.8px solid currentColor;
+  border-right: 1.8px solid currentColor;
+}
+.carousel-btn.prev span { transform: translateX(2px) rotate(-135deg); }
+.carousel-btn.next span { transform: translateX(-2px) rotate(45deg); }
+
+.video-feature-text h2 { margin-bottom: .5em; }
+.video-feature-text .btn-row { margin-top: 26px; }
+
 /* CTA strip */
 .cta-strip {
   position: relative;
@@ -915,8 +1075,8 @@ a.card:hover { transform: translateY(-3px); }
 }
 .footer-grid {
   display: grid;
-  gap: clamp(28px, 3.4vw, 46px);
-  grid-template-columns: minmax(230px, 1.3fr) repeat(3, minmax(150px, 1fr));
+  gap: clamp(24px, 2.6vw, 40px);
+  grid-template-columns: minmax(210px, 1.25fr) repeat(4, minmax(132px, 1fr));
 }
 .footer-logo { height: 78px; width: auto; margin-bottom: 18px; }
 .footer-tagline { color: rgba(255,255,255,.55); max-width: 34ch; font-size: .92rem; }
@@ -979,6 +1139,15 @@ a.card:hover { transform: translateY(-3px); }
   .nav > a, .nav-drop-btn { padding: 9px 10px; font-size: .9rem; }
   .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .footer-brand { grid-column: 1 / -1; }
+}
+
+@media (max-width: 980px) {
+  /* Stack the video feature and lead with the pitch, so the carousel is not
+     the first thing on a narrow screen with no context above it. */
+  .video-feature-grid { grid-template-columns: 1fr; }
+  .video-feature-text { order: -1; }
+  .carousel-btn.prev { left: 2px; }
+  .carousel-btn.next { right: 2px; }
 }
 
 @media (max-width: 900px) {

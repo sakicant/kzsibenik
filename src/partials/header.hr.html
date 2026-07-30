@@ -9,8 +9,9 @@
       <a href="/">Naslovna</a>
       <a href="/novosti/">Novosti</a>
       <div class="nav-drop" data-drop>
-        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-controls="dropONama">
-          O nama <span class="caret" aria-hidden="true"></span>
+        <a href="/o-nama/" class="nav-drop-btn">O nama</a>
+        <button type="button" class="nav-drop-toggle" aria-expanded="false" aria-controls="dropONama" aria-label="Prikaži podstranice O nama">
+          <span class="caret" aria-hidden="true"></span>
         </button>
         <div class="nav-drop-menu" id="dropONama">
           <a href="/o-nama/povijest/">Povijest</a>
@@ -18,8 +19,15 @@
           <a href="/o-nama/vjerovanje/">Vjerovanje</a>
         </div>
       </div>
-      <a href="/video-poruke/">Video poruke</a>
-      <a href="/knjiznica/">Knjižnica</a>
+      <div class="nav-drop" data-drop>
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-controls="dropMedia">
+          Multimedija <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="nav-drop-menu" id="dropMedia">
+          <a href="/video-poruke/">Video poruke</a>
+          <a href="/knjiznica/">Knjižnica</a>
+        </div>
+      </div>
       <a href="/doniraj/">Doniraj</a>
       <a href="/kontakt/">Kontakt</a>
       {{LANG_SWITCHER_DESKTOP}}
@@ -33,12 +41,13 @@
   <nav class="mobile-nav" id="mobileNav" aria-label="Mobilna navigacija" hidden>
     <a href="/">Naslovna</a>
     <a href="/novosti/">Novosti</a>
-    <span class="mobile-group">O nama</span>
+    <a href="/o-nama/" class="mobile-group-link">O nama</a>
     <a href="/o-nama/povijest/" class="mobile-sub">Povijest</a>
     <a href="/o-nama/vodstvo/" class="mobile-sub">Vodstvo crkve</a>
     <a href="/o-nama/vjerovanje/" class="mobile-sub">Vjerovanje</a>
-    <a href="/video-poruke/">Video poruke</a>
-    <a href="/knjiznica/">Knjižnica</a>
+    <span class="mobile-group">Multimedija</span>
+    <a href="/video-poruke/" class="mobile-sub">Video poruke</a>
+    <a href="/knjiznica/" class="mobile-sub">Knjižnica</a>
     <a href="/doniraj/">Doniraj</a>
     <a href="/kontakt/">Kontakt</a>
     {{LANG_SWITCHER_MOBILE}}

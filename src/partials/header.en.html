@@ -9,8 +9,9 @@
       <a href="/en/">Home</a>
       <a href="/en/news/">News</a>
       <div class="nav-drop" data-drop>
-        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-controls="dropAbout">
-          About us <span class="caret" aria-hidden="true"></span>
+        <a href="/en/about/" class="nav-drop-btn">About us</a>
+        <button type="button" class="nav-drop-toggle" aria-expanded="false" aria-controls="dropAbout" aria-label="Show About us sub-pages">
+          <span class="caret" aria-hidden="true"></span>
         </button>
         <div class="nav-drop-menu" id="dropAbout">
           <a href="/en/about/history/">History</a>
@@ -18,8 +19,15 @@
           <a href="/en/about/beliefs/">What we believe</a>
         </div>
       </div>
-      <a href="/en/messages/">Video messages</a>
-      <a href="/en/library/">Library</a>
+      <div class="nav-drop" data-drop>
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-controls="dropMedia">
+          Multimedia <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="nav-drop-menu" id="dropMedia">
+          <a href="/en/messages/">Video messages</a>
+          <a href="/en/library/">Library</a>
+        </div>
+      </div>
       <a href="/en/give/">Give</a>
       <a href="/en/contact/">Contact</a>
       {{LANG_SWITCHER_DESKTOP}}
@@ -33,12 +41,13 @@
   <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" hidden>
     <a href="/en/">Home</a>
     <a href="/en/news/">News</a>
-    <span class="mobile-group">About us</span>
+    <a href="/en/about/" class="mobile-group-link">About us</a>
     <a href="/en/about/history/" class="mobile-sub">History</a>
     <a href="/en/about/leadership/" class="mobile-sub">Church leadership</a>
     <a href="/en/about/beliefs/" class="mobile-sub">What we believe</a>
-    <a href="/en/messages/">Video messages</a>
-    <a href="/en/library/">Library</a>
+    <span class="mobile-group">Multimedia</span>
+    <a href="/en/messages/" class="mobile-sub">Video messages</a>
+    <a href="/en/library/" class="mobile-sub">Library</a>
     <a href="/en/give/">Give</a>
     <a href="/en/contact/">Contact</a>
     {{LANG_SWITCHER_MOBILE}}

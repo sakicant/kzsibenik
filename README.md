@@ -45,6 +45,7 @@ Everything outside `src/` at the root that looks like a page folder
 |---|---|---|
 | home | `/` | `/en/` |
 | novosti | `/novosti/` | `/en/news/` |
+| o-nama | `/o-nama/` | `/en/about/` |
 | povijest | `/o-nama/povijest/` | `/en/about/history/` |
 | vodstvo | `/o-nama/vodstvo/` | `/en/about/leadership/` |
 | vjerovanje | `/o-nama/vjerovanje/` | `/en/about/beliefs/` |
@@ -53,10 +54,12 @@ Everything outside `src/` at the root that looks like a page folder
 | doniraj | `/doniraj/` | `/en/give/` |
 | kontakt | `/kontakt/` | `/en/contact/` |
 
-There is no `/o-nama/` landing page. "O nama" in the header is a dropdown only,
-and its three children are real pages. `povijest`, `vodstvo` and `vjerovanje`
-live under the `/o-nama/` path without anything being served at that path
-itself.
+Menu shape: Naslovna, Novosti, O nama, Multimedija, Doniraj, Kontakt.
+
+"O nama" is both a page and a dropdown - the label links to `/o-nama/` and the
+small caret beside it opens Povijest, Vodstvo, Vjerovanje. "Multimedija" is a
+dropdown label only, with Video poruke and Knjižnica under it; those two keep
+their own top-level slugs.
 
 ## Adding a page
 

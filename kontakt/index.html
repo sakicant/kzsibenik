@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css?v=2efba13a11">
+<link rel="stylesheet" href="/styles.css?v=ab64247f89">
 <script>document.documentElement.className+=" js-reveal";</script>
 <script type="application/ld+json">
 {
@@ -60,8 +60,9 @@
       <a href="/">Naslovna</a>
       <a href="/novosti/">Novosti</a>
       <div class="nav-drop" data-drop>
-        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-controls="dropONama">
-          O nama <span class="caret" aria-hidden="true"></span>
+        <a href="/o-nama/" class="nav-drop-btn">O nama</a>
+        <button type="button" class="nav-drop-toggle" aria-expanded="false" aria-controls="dropONama" aria-label="Prikaži podstranice O nama">
+          <span class="caret" aria-hidden="true"></span>
         </button>
         <div class="nav-drop-menu" id="dropONama">
           <a href="/o-nama/povijest/">Povijest</a>
@@ -69,8 +70,15 @@
           <a href="/o-nama/vjerovanje/">Vjerovanje</a>
         </div>
       </div>
-      <a href="/video-poruke/">Video poruke</a>
-      <a href="/knjiznica/">Knjižnica</a>
+      <div class="nav-drop" data-drop>
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-controls="dropMedia">
+          Multimedija <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="nav-drop-menu" id="dropMedia">
+          <a href="/video-poruke/">Video poruke</a>
+          <a href="/knjiznica/">Knjižnica</a>
+        </div>
+      </div>
       <a href="/doniraj/">Doniraj</a>
       <a class="is-active" aria-current="page" href="/kontakt/">Kontakt</a>
       <div class="lang-switch" role="group" aria-label="Jezik" data-ctx="desktop"><a href="/kontakt/" class="lang-item is-active" hreflang="hr" lang="hr" aria-current="true">HR</a><span class="lang-sep" aria-hidden="true"></span><a href="/en/contact/" class="lang-item" hreflang="en" lang="en">EN</a></div>
@@ -84,12 +92,13 @@
   <nav class="mobile-nav" id="mobileNav" aria-label="Mobilna navigacija" hidden>
     <a href="/">Naslovna</a>
     <a href="/novosti/">Novosti</a>
-    <span class="mobile-group">O nama</span>
+    <a href="/o-nama/" class="mobile-group-link">O nama</a>
     <a href="/o-nama/povijest/" class="mobile-sub">Povijest</a>
     <a href="/o-nama/vodstvo/" class="mobile-sub">Vodstvo crkve</a>
     <a href="/o-nama/vjerovanje/" class="mobile-sub">Vjerovanje</a>
-    <a href="/video-poruke/">Video poruke</a>
-    <a href="/knjiznica/">Knjižnica</a>
+    <span class="mobile-group">Multimedija</span>
+    <a href="/video-poruke/" class="mobile-sub">Video poruke</a>
+    <a href="/knjiznica/" class="mobile-sub">Knjižnica</a>
     <a href="/doniraj/">Doniraj</a>
     <a class="is-active" aria-current="page" href="/kontakt/">Kontakt</a>
     <div class="lang-switch" role="group" aria-label="Jezik" data-ctx="mobile"><a href="/kontakt/" class="lang-item is-active" hreflang="hr" lang="hr" aria-current="true">HR</a><span class="lang-sep" aria-hidden="true"></span><a href="/en/contact/" class="lang-item" hreflang="en" lang="en">EN</a></div>
@@ -205,17 +214,23 @@
       <h3>Stranice</h3>
       <a href="/">Naslovna</a>
       <a href="/novosti/">Novosti i obavijesti</a>
-      <a href="/video-poruke/">Video poruke</a>
-      <a href="/knjiznica/">Knjižnica</a>
       <a href="/doniraj/">Doniraj</a>
       <a href="/kontakt/">Kontakt</a>
     </div>
 
     <div class="footer-col">
       <h3>O nama</h3>
+      <a href="/o-nama/">Pregled</a>
       <a href="/o-nama/povijest/">Povijest</a>
       <a href="/o-nama/vodstvo/">Vodstvo crkve</a>
       <a href="/o-nama/vjerovanje/">Vjerovanje</a>
+    </div>
+
+    <div class="footer-col">
+      <h3>Multimedija</h3>
+      <a href="/video-poruke/">Video poruke</a>
+      <a href="/knjiznica/">Knjižnica</a>
+      <a href="https://www.youtube.com/@krscanskazajednicasibenik" target="_blank" rel="noopener">YouTube kanal</a>
     </div>
 
     <div class="footer-col">
@@ -224,7 +239,6 @@
       <span class="footer-muted">22000 Šibenik, Hrvatska</span>
       <a href="mailto:info@krscanskazajednicasibenik.hr">info@krscanskazajednicasibenik.hr</a>
       <span class="footer-muted" data-placeholder>Telefon dolazi ovdje</span>
-      <a href="https://www.youtube.com/@krscanskazajednicasibenik" target="_blank" rel="noopener">YouTube kanal</a>
       <a href="https://maps.google.com/?cid=8294334769570048758" target="_blank" rel="noopener">Google karta</a>
     </div>
   </div>
@@ -235,6 +249,6 @@
   </div>
 </footer>
 
-<script src="/script.js?v=2efba13a11" defer></script>
+<script src="/script.js?v=ab64247f89" defer></script>
 </body>
 </html>

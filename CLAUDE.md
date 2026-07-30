@@ -11,10 +11,14 @@ Website for Kršćanska zajednica Šibenik (krscanskazajednicasibenik.hr).
   to that language's home page.
 - Croatian slugs are Croatian words (`o-nama/povijest`), English slugs are
   English words (`about/history`). They are paired by page-id, not by slug.
-- There is deliberately **no page at `/o-nama/`**. "O nama" in the header is a
-  dropdown with three children and nothing else. Do not link to `/o-nama/`.
-- Header order is fixed: Naslovna, Novosti, O nama, Video poruke, Knjižnica,
-  Doniraj, Kontakt. No item is styled as a call-to-action button.
+- Header order is fixed: Naslovna, Novosti, O nama, Multimedija, Doniraj,
+  Kontakt. No item is styled as a call-to-action button.
+- "O nama" is a link **and** a dropdown: the label goes to `/o-nama/`, the
+  caret button beside it opens the three children. "Multimedija" is a plain
+  dropdown button with no page behind it.
+- Every `main > section` past the hero gets a Š watermark from
+  `styles.css`, cycling left, right, centre. It is automatic - do not add
+  watermark markup to pages.
 - All colour lives in the `:root` block at the top of `styles.css`. The brand
   colours are not decided yet, so do not hardcode a hex value anywhere else.
 - Body copy is not written yet. Placeholders are deliberate and visible:
@@ -32,6 +36,11 @@ stamps `styles.css` / `script.js` with a content hash for cache busting.
 Vercel now (preview and review), FTP later. `contact.php` only runs on the FTP
 host - the form is inert on Vercel. When uploading over FTP use **binary
 mode**; ASCII mode corrupts PHP and produces 500s.
+
+## Admin panel
+
+Planned, not built. Spec in `plans/admin-panel.md`. It needs PHP and MySQL, so
+it can only run on the FTP host, never on the Vercel preview.
 
 ## Open items
 

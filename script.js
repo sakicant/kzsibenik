@@ -57,7 +57,10 @@
   /* -------------------------------------------------------------- dropdown */
   var drops = Array.prototype.slice.call(doc.querySelectorAll("[data-drop]"));
   drops.forEach(function (drop) {
-    var btn = drop.querySelector(".nav-drop-btn");
+    // Two shapes of trigger: a lone button that only opens the menu, or a link
+    // to a real page next to a small caret button that opens it. The caret
+    // wins when both are present, so the link keeps navigating on click.
+    var btn = drop.querySelector(".nav-drop-toggle") || drop.querySelector("button.nav-drop-btn");
     if (!btn) { return; }
 
     // A page inside this section marks the parent as current too.
@@ -71,6 +74,7 @@
     };
 
     btn.addEventListener("click", function (e) {
+      e.preventDefault();
       e.stopPropagation();
       setDrop(!drop.classList.contains("is-open"));
     });
@@ -117,6 +121,43 @@
       window.setTimeout(showAll, 2500);
     }
   }
+
+  /* -------------------------------------------------------------- carousel */
+  doc.querySelectorAll("[data-carousel]").forEach(function (root) {
+    var track = root.querySelector(".carousel-track");
+    var prev = root.querySelector(".carousel-btn.prev");
+    var next = root.querySelector(".carousel-btn.next");
+    if (!track || !prev || !next) { return; }
+
+    var step = function () {
+      var tile = track.firstElementChild;
+      if (!tile) { return track.clientWidth; }
+      // One tile plus the gap between tiles.
+      var gap = parseFloat(getComputedStyle(track).columnGap || "0") || 0;
+      return tile.getBoundingClientRect().width + gap;
+    };
+
+    var sync = function () {
+      // 2px of slack: fractional scroll widths otherwise leave "next" enabled
+      // forever at the right-hand end.
+      var max = track.scrollWidth - track.clientWidth - 2;
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= max;
+    };
+
+    var go = function (dir) {
+      track.scrollBy({ left: dir * step(), behavior: "smooth" });
+      // The scroll event drives sync normally, but smooth scrolling can finish
+      // without one in some browsers, which would strand a button disabled.
+      window.setTimeout(sync, 450);
+    };
+
+    prev.addEventListener("click", function () { go(-1); });
+    next.addEventListener("click", function () { go(1); });
+    track.addEventListener("scroll", sync, { passive: true });
+    window.addEventListener("resize", sync);
+    sync();
+  });
 
   /* ------------------------------------------------------------ footer year */
   doc.querySelectorAll("[data-year]").forEach(function (el) {

@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css?v=2efba13a11">
+<link rel="stylesheet" href="/styles.css?v=ab64247f89">
 <script>document.documentElement.className+=" js-reveal";</script>
 <script type="application/ld+json">
 {
@@ -75,8 +75,9 @@
       <a class="is-active" aria-current="page" href="/">Naslovna</a>
       <a href="/novosti/">Novosti</a>
       <div class="nav-drop" data-drop>
-        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-controls="dropONama">
-          O nama <span class="caret" aria-hidden="true"></span>
+        <a href="/o-nama/" class="nav-drop-btn">O nama</a>
+        <button type="button" class="nav-drop-toggle" aria-expanded="false" aria-controls="dropONama" aria-label="Prikaži podstranice O nama">
+          <span class="caret" aria-hidden="true"></span>
         </button>
         <div class="nav-drop-menu" id="dropONama">
           <a href="/o-nama/povijest/">Povijest</a>
@@ -84,8 +85,15 @@
           <a href="/o-nama/vjerovanje/">Vjerovanje</a>
         </div>
       </div>
-      <a href="/video-poruke/">Video poruke</a>
-      <a href="/knjiznica/">Knjižnica</a>
+      <div class="nav-drop" data-drop>
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-controls="dropMedia">
+          Multimedija <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="nav-drop-menu" id="dropMedia">
+          <a href="/video-poruke/">Video poruke</a>
+          <a href="/knjiznica/">Knjižnica</a>
+        </div>
+      </div>
       <a href="/doniraj/">Doniraj</a>
       <a href="/kontakt/">Kontakt</a>
       <div class="lang-switch" role="group" aria-label="Jezik" data-ctx="desktop"><a href="/" class="lang-item is-active" hreflang="hr" lang="hr" aria-current="true">HR</a><span class="lang-sep" aria-hidden="true"></span><a href="/en/" class="lang-item" hreflang="en" lang="en">EN</a></div>
@@ -99,12 +107,13 @@
   <nav class="mobile-nav" id="mobileNav" aria-label="Mobilna navigacija" hidden>
     <a class="is-active" aria-current="page" href="/">Naslovna</a>
     <a href="/novosti/">Novosti</a>
-    <span class="mobile-group">O nama</span>
+    <a href="/o-nama/" class="mobile-group-link">O nama</a>
     <a href="/o-nama/povijest/" class="mobile-sub">Povijest</a>
     <a href="/o-nama/vodstvo/" class="mobile-sub">Vodstvo crkve</a>
     <a href="/o-nama/vjerovanje/" class="mobile-sub">Vjerovanje</a>
-    <a href="/video-poruke/">Video poruke</a>
-    <a href="/knjiznica/">Knjižnica</a>
+    <span class="mobile-group">Multimedija</span>
+    <a href="/video-poruke/" class="mobile-sub">Video poruke</a>
+    <a href="/knjiznica/" class="mobile-sub">Knjižnica</a>
     <a href="/doniraj/">Doniraj</a>
     <a href="/kontakt/">Kontakt</a>
     <div class="lang-switch" role="group" aria-label="Jezik" data-ctx="mobile"><a href="/" class="lang-item is-active" hreflang="hr" lang="hr" aria-current="true">HR</a><span class="lang-sep" aria-hidden="true"></span><a href="/en/" class="lang-item" hreflang="en" lang="en">EN</a></div>
@@ -119,34 +128,10 @@
     <div class="ph-lines is-short hero-lead" aria-label="Uvodni tekst dolazi ovdje">
       <i></i><i></i><i></i>
     </div>
+    <p class="hero-meta">Okupljamo se svake subote u 19 sati</p>
     <div class="btn-row">
       <a class="btn btn-primary" href="/kontakt/">Posjetite nas</a>
       <a class="btn btn-ghost" href="/video-poruke/">Pogledajte poruku</a>
-    </div>
-  </div>
-</section>
-
-<section class="section-tight">
-  <div class="wrap">
-    <div class="grid grid-3 reveal">
-      <div class="card">
-        <div class="card-icon" aria-hidden="true">I</div>
-        <h3>Okupljanje subotom</h3>
-        <p>Sastajemo se svake subote u 19 sati.</p>
-        <a class="link-arrow" href="/kontakt/">Kako doći</a>
-      </div>
-      <div class="card">
-        <div class="card-icon" aria-hidden="true">II</div>
-        <h3>Obavijesti</h3>
-        <div class="ph-lines is-short"><i></i><i></i></div>
-        <a class="link-arrow" href="/novosti/">Novosti</a>
-      </div>
-      <div class="card">
-        <div class="card-icon" aria-hidden="true">III</div>
-        <h3>Prvi put kod nas?</h3>
-        <div class="ph-lines is-short"><i></i><i></i></div>
-        <a class="link-arrow" href="/o-nama/vjerovanje/">U što vjerujemo</a>
-      </div>
     </div>
   </div>
 </section>
@@ -155,11 +140,11 @@
   <div class="wrap">
     <div class="grid grid-2 reveal" style="align-items:center">
       <div>
-        <span class="eyebrow">Tko smo</span>
+        <span class="eyebrow">O nama</span>
         <h2>Zajednica koja se okuplja oko Biblije</h2>
         <div class="ph-lines"><i></i><i></i><i></i><i></i><i></i></div>
         <div class="btn-row">
-          <a class="btn btn-ghost" href="/o-nama/vjerovanje/">Naše vjerovanje</a>
+          <a class="btn btn-primary" href="/o-nama/">Više o nama</a>
         </div>
       </div>
       <div class="ph-media is-wide">Fotografija zajednice</div>
@@ -167,36 +152,11 @@
   </div>
 </section>
 
-<section class="section-tight">
-  <div class="wrap wrap-narrow">
-    <div class="verse panel reveal">
-      <blockquote data-placeholder>Biblijski citat dolazi ovdje.</blockquote>
-      <cite data-placeholder>Knjiga poglavlje,redak</cite>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Raspored</span>
-      <h2>Kada se okupljamo</h2>
-    </div>
-    <dl class="times reveal">
-      <div class="times-row">
-        <dt>Subota</dt>
-        <dd>19:00</dd>
-      </div>
-    </dl>
-    <p class="ph-note"><strong>Za ispuniti:</strong> adresa dvorane. Ako se osim subote okupljate još kojim danom, dodajte redak.</p>
-  </div>
-</section>
-
 <section class="section">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Novosti</span>
-      <h2>Zadnje obavijesti</h2>
+      <h2>Novosti i obavijesti</h2>
     </div>
     <div class="news-list reveal">
       <article class="news-item">
@@ -224,38 +184,51 @@
   </div>
 </section>
 
-<section class="section">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Media</span>
+<section class="section video-feature">
+  <div class="wrap video-feature-grid reveal">
+    <div class="video-carousel" data-carousel>
+      <button type="button" class="carousel-btn prev" aria-label="Prethodne poruke"><span></span></button>
+      <div class="carousel-track">
+        <article class="video-tile">
+          <div class="ph-media is-wide">Video<div class="play-badge"><span></span></div><span class="duration" data-placeholder>00:00</span></div>
+          <div class="video-tile-body">
+            <h3 data-placeholder>Naslov poruke</h3>
+            <div class="news-meta"><span data-placeholder>pregleda</span><span data-placeholder>datum</span></div>
+          </div>
+        </article>
+        <article class="video-tile">
+          <div class="ph-media is-wide">Video<div class="play-badge"><span></span></div><span class="duration" data-placeholder>00:00</span></div>
+          <div class="video-tile-body">
+            <h3 data-placeholder>Naslov poruke</h3>
+            <div class="news-meta"><span data-placeholder>pregleda</span><span data-placeholder>datum</span></div>
+          </div>
+        </article>
+        <article class="video-tile">
+          <div class="ph-media is-wide">Video<div class="play-badge"><span></span></div><span class="duration" data-placeholder>00:00</span></div>
+          <div class="video-tile-body">
+            <h3 data-placeholder>Naslov poruke</h3>
+            <div class="news-meta"><span data-placeholder>pregleda</span><span data-placeholder>datum</span></div>
+          </div>
+        </article>
+        <article class="video-tile">
+          <div class="ph-media is-wide">Video<div class="play-badge"><span></span></div><span class="duration" data-placeholder>00:00</span></div>
+          <div class="video-tile-body">
+            <h3 data-placeholder>Naslov poruke</h3>
+            <div class="news-meta"><span data-placeholder>pregleda</span><span data-placeholder>datum</span></div>
+          </div>
+        </article>
+      </div>
+      <button type="button" class="carousel-btn next" aria-label="Sljedeće poruke"><span></span></button>
+    </div>
+
+    <div class="video-feature-text">
+      <span class="eyebrow">Multimedija</span>
       <h2>Video poruke</h2>
-    </div>
-    <div class="grid grid-3 reveal">
-      <article class="card video-card">
-        <div class="ph-media is-wide">Video<div class="play-badge"><span></span></div></div>
-        <div class="video-body">
-          <h3 data-placeholder>Naslov poruke</h3>
-          <div class="ph-lines is-short"><i></i></div>
-        </div>
-      </article>
-      <article class="card video-card">
-        <div class="ph-media is-wide">Video<div class="play-badge"><span></span></div></div>
-        <div class="video-body">
-          <h3 data-placeholder>Naslov poruke</h3>
-          <div class="ph-lines is-short"><i></i></div>
-        </div>
-      </article>
-      <article class="card video-card">
-        <div class="ph-media is-wide">Video<div class="play-badge"><span></span></div></div>
-        <div class="video-body">
-          <h3 data-placeholder>Naslov poruke</h3>
-          <div class="ph-lines is-short"><i></i></div>
-        </div>
-      </article>
-    </div>
-    <div class="btn-row" style="margin-top:26px">
-      <a class="btn btn-ghost" href="/video-poruke/">Sve poruke</a>
-      <a class="btn btn-ghost" href="https://www.youtube.com/@krscanskazajednicasibenik" target="_blank" rel="noopener">YouTube kanal</a>
+      <div class="ph-lines"><i></i><i></i><i></i><i></i></div>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="/video-poruke/">Sve video poruke</a>
+        <a class="btn btn-ghost" href="https://www.youtube.com/@krscanskazajednicasibenik" target="_blank" rel="noopener">Pretplatite se</a>
+      </div>
     </div>
   </div>
 </section>
@@ -288,17 +261,23 @@
       <h3>Stranice</h3>
       <a href="/">Naslovna</a>
       <a href="/novosti/">Novosti i obavijesti</a>
-      <a href="/video-poruke/">Video poruke</a>
-      <a href="/knjiznica/">Knjižnica</a>
       <a href="/doniraj/">Doniraj</a>
       <a href="/kontakt/">Kontakt</a>
     </div>
 
     <div class="footer-col">
       <h3>O nama</h3>
+      <a href="/o-nama/">Pregled</a>
       <a href="/o-nama/povijest/">Povijest</a>
       <a href="/o-nama/vodstvo/">Vodstvo crkve</a>
       <a href="/o-nama/vjerovanje/">Vjerovanje</a>
+    </div>
+
+    <div class="footer-col">
+      <h3>Multimedija</h3>
+      <a href="/video-poruke/">Video poruke</a>
+      <a href="/knjiznica/">Knjižnica</a>
+      <a href="https://www.youtube.com/@krscanskazajednicasibenik" target="_blank" rel="noopener">YouTube kanal</a>
     </div>
 
     <div class="footer-col">
@@ -307,7 +286,6 @@
       <span class="footer-muted">22000 Šibenik, Hrvatska</span>
       <a href="mailto:info@krscanskazajednicasibenik.hr">info@krscanskazajednicasibenik.hr</a>
       <span class="footer-muted" data-placeholder>Telefon dolazi ovdje</span>
-      <a href="https://www.youtube.com/@krscanskazajednicasibenik" target="_blank" rel="noopener">YouTube kanal</a>
       <a href="https://maps.google.com/?cid=8294334769570048758" target="_blank" rel="noopener">Google karta</a>
     </div>
   </div>
@@ -318,6 +296,6 @@
   </div>
 </footer>
 
-<script src="/script.js?v=2efba13a11" defer></script>
+<script src="/script.js?v=ab64247f89" defer></script>
 </body>
 </html>
