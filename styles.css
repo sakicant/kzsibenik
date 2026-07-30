@@ -282,21 +282,44 @@ main > section:nth-of-type(3n+1)::after { left: 50%; transform: translateX(-50%)
 /* --------------------------------------------------------------------------
    5. Header
    -------------------------------------------------------------------------- */
+/* Over the hero the header carries no background of its own. Once it clears
+   the hero it becomes the solid bar and stays pinned. */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 60;
-  background: rgba(243, 241, 238, .72);
-  backdrop-filter: saturate(140%) blur(14px);
-  -webkit-backdrop-filter: saturate(140%) blur(14px);
+  background: transparent;
   border-bottom: 1px solid transparent;
   transition: background .25s ease, border-color .25s ease, box-shadow .25s ease;
 }
+
+/* A soft light gradient that travels with the transparent header. Without it
+   the menu sits straight on the photograph and drops to 3.4:1, under the 4.5
+   minimum - the logo is fine on the washed left, the nav is not. At this
+   strength the worst case anywhere over the hero measures about 5:1. It
+   extends past the header so it fades out rather than ending on an edge. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 170px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(246, 245, 242, .65), rgba(246, 245, 242, 0));
+  transition: opacity .25s ease;
+}
+
 .site-header.is-stuck {
   background: rgba(246, 245, 242, .90);
+  backdrop-filter: saturate(140%) blur(14px);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
   border-bottom-color: var(--line);
   box-shadow: 0 8px 26px rgba(23, 22, 20, .06);
 }
+/* The solid bar provides its own contrast, so the scrim is not needed. */
+.site-header.is-stuck::before { opacity: 0; }
 
 .header-inner {
   display: flex;

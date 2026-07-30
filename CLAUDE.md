@@ -29,6 +29,10 @@ Website for Kršćanska zajednica Šibenik (krscanskazajednicasibenik.hr).
 - Photographs get exported to WebP at two widths and **saved without EXIF** -
   phone pictures carry GPS coordinates. Check contrast after changing any
   image that sits behind text; the home hero currently clears AAA at 7.2:1.
+- The header is transparent while it is over the hero and solid after it. The
+  gradient on `.site-header::before` is not decoration: without it the menu
+  sits on the photograph at 3.4:1, under the 4.5 minimum. If the hero picture
+  changes, re-measure the worst case across the whole hero before touching it.
 - All colour lives in the `:root` block at the top of `styles.css`. The brand
   colours are not decided yet, so do not hardcode a hex value anywhere else.
 - Body copy is not written yet. Placeholders are deliberate and visible:

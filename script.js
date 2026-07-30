@@ -9,11 +9,22 @@
   /* ---------------------------------------------------------------- header */
   var header = doc.getElementById("siteHeader");
   if (header) {
+    var hero = doc.querySelector(".hero");
     var onScroll = function () {
-      header.classList.toggle("is-stuck", window.scrollY > 12);
+      // Stay transparent for as long as the header is over the hero, then
+      // become the solid bar. Measuring the hero rather than a scroll figure
+      // keeps it correct whatever height the hero ends up being.
+      // The header's own height is stable across the two states - the logo
+      // shrinks but the bar keeps its min-height - so reading it here cannot
+      // set up a loop where going solid immediately undoes itself.
+      var solid = hero
+        ? hero.getBoundingClientRect().bottom <= header.offsetHeight
+        : window.scrollY > 12;
+      header.classList.toggle("is-stuck", solid);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
   }
 
   /* ----------------------------------------------------------- mobile menu */
