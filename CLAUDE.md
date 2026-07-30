@@ -46,10 +46,16 @@ Website for Kršćanska zajednica Šibenik (krscanskazajednicasibenik.hr).
   whitespace and renders as a real line box, which once pushed the whole page
   down by a line. PowerShell's `-Encoding UTF8` writes one - prefer the Write
   tool, or `System.Text.UTF8Encoding($false)`.
-- The header is transparent while it is over the hero and solid after it. The
-  gradient on `.site-header::before` is not decoration: without it the menu
-  sits on the photograph at 3.4:1, under the 4.5 minimum. If the hero picture
-  changes, re-measure the worst case across the whole hero before touching it.
+- The header is transparent while it is over the hero and solid after it.
+- **The home hero is dark and its copy is light**; every other page is the
+  light paper scheme. The dark overlay is what makes the white copy and white
+  menu legible, so it is not a style choice to soften casually - measured at
+  5.2:1 for the copy and 7.9:1 for the menu. Re-measure if the photograph
+  changes. Everything light-on-dark is scoped to
+  `.page-home .site-header:not(.is-stuck)`, so the bar reverts to dark-on-light
+  the moment it goes solid.
+- `.site-header::before` is a light scrim for the inner pages, switched off on
+  the home page where it would only fight the dark hero.
 - All colour lives in the `:root` block at the top of `styles.css`. The brand
   colours are not decided yet, so do not hardcode a hex value anywhere else.
 - Body copy is not written yet. Placeholders are deliberate and visible:

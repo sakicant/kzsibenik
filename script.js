@@ -35,6 +35,9 @@
       toggle.classList.toggle("is-open", open);
       toggle.setAttribute("aria-expanded", String(open));
       mobileNav.classList.toggle("is-open", open);
+      // The open panel is light, so the bar drops its transparent state with
+      // it - otherwise a white logo would be left sitting on nothing.
+      if (header) { header.classList.toggle("is-menu-open", open); }
       // `hidden` keeps the links out of the tab order while the menu is shut.
       if (open) { mobileNav.removeAttribute("hidden"); }
       else { mobileNav.setAttribute("hidden", ""); }

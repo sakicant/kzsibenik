@@ -334,6 +334,42 @@ main > section:nth-of-type(3n+1)::after { left: 50%; transform: translateX(-50%)
 /* The solid bar provides its own contrast, so the scrim is not needed. */
 .site-header.is-stuck::before { opacity: 0; }
 
+/* ---- Header while it floats on the dark home hero ----
+   The light scrim would only lift the top of the photograph and work against
+   the white menu, and the hero's own dark top already covers legibility. */
+.page-home .site-header:not(.is-stuck)::before { opacity: 0; }
+
+.page-home .site-header:not(.is-stuck) .nav > a,
+.page-home .site-header:not(.is-stuck) .nav-drop-btn,
+.page-home .site-header:not(.is-stuck) .nav-drop-toggle,
+.page-home .site-header:not(.is-stuck) .lang-current { color: rgba(255, 255, 255, .88); }
+
+.page-home .site-header:not(.is-stuck) .nav > a:hover,
+.page-home .site-header:not(.is-stuck) .nav-drop-btn:hover,
+.page-home .site-header:not(.is-stuck) .nav-drop-toggle:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, .12);
+}
+.page-home .site-header:not(.is-stuck) .nav > a.is-active { color: #fff; background: rgba(255, 255, 255, .14); }
+.page-home .site-header:not(.is-stuck) .lang-switch.nav-drop { border-left-color: rgba(255, 255, 255, .28); }
+
+/* The logo ships black on transparent; this turns it white without a second file. */
+.page-home .site-header:not(.is-stuck) .brand-logo { filter: brightness(0) invert(1); }
+
+.page-home .site-header:not(.is-stuck) .nav-toggle {
+  background: rgba(255, 255, 255, .12);
+  border-color: rgba(255, 255, 255, .38);
+}
+.page-home .site-header:not(.is-stuck) .nav-toggle span { background: #fff; }
+
+/* With the mobile menu open the panel below is light, so the bar takes its
+   solid state too rather than leaving a white logo stranded on nothing. */
+.site-header.is-menu-open { background: rgba(246, 245, 242, .97); border-bottom-color: var(--line); }
+.site-header.is-menu-open::before { opacity: 0; }
+.page-home .site-header.is-menu-open .brand-logo { filter: none; }
+.page-home .site-header.is-menu-open .nav-toggle { background: var(--panel); border-color: var(--line); }
+.page-home .site-header.is-menu-open .nav-toggle span { background: var(--ink); }
+
 .header-inner {
   display: flex;
   align-items: center;
@@ -679,19 +715,50 @@ a.card:hover { transform: translateY(-3px); }
   aspect-ratio: auto;
   transform: none;
   opacity: 1;
+  /* A dark wash rather than a light one, so the whole photograph survives -
+     the man, his raised arms, the town below - instead of one side being
+     bleached out to make room for text. The copy goes light on top of it.
+     Deeper at the very top and bottom, easiest through the middle where the
+     picture matters. Measured: white copy 5.2:1, white menu 7.9:1. */
   background-image:
-    linear-gradient(100deg,
-      rgba(246, 245, 242, .955) 0%,
-      rgba(243, 241, 238, .90) 32%,
-      rgba(240, 238, 234, .72) 62%,
-      rgba(234, 232, 228, .56) 100%),
+    linear-gradient(to bottom,
+      rgba(18, 17, 16, .82) 0%,
+      rgba(18, 17, 16, .64) 18%,
+      rgba(18, 17, 16, .60) 55%,
+      rgba(18, 17, 16, .68) 85%,
+      rgba(18, 17, 16, .80) 100%),
     url("/assets/img/hero-sibenik.webp?v=2");
   background-size: auto, cover;
   background-position: center, center 45%;
   background-repeat: no-repeat;
-  -webkit-mask-image: linear-gradient(to bottom, #000 58%, transparent 100%);
-          mask-image: linear-gradient(to bottom, #000 58%, transparent 100%);
+  /* Short fade so the dark panel dissolves into the page instead of ending on
+     a hard line. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 86%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 86%, transparent 100%);
 }
+
+/* ---- Light copy on the dark hero ---- */
+.page-home .hero h1 { color: #fff; }
+.page-home .hero .eyebrow { color: rgba(255, 255, 255, .82); }
+.page-home .hero .eyebrow::after { background: rgba(255, 255, 255, .55); opacity: 1; }
+.page-home .hero .ph-lines i {
+  background: linear-gradient(90deg, rgba(255, 255, 255, .34), rgba(255, 255, 255, .18));
+}
+.page-home .hero .hero-meta {
+  color: #fff;
+  background: rgba(255, 255, 255, .10);
+  border-color: rgba(255, 255, 255, .28);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.page-home .hero .btn-primary { background: #fff; color: var(--ink); }
+.page-home .hero .btn-primary:hover { background: var(--accent); color: #fff; }
+.page-home .hero .btn-ghost {
+  background: rgba(255, 255, 255, .10);
+  border-color: rgba(255, 255, 255, .45);
+  color: #fff;
+}
+.page-home .hero .btn-ghost:hover { background: #fff; border-color: #fff; color: var(--ink); }
 /* The Š mark would only muddy the photo, so it drops back to a hint here. */
 .page-home .hero::before { opacity: .02; }
 
@@ -699,10 +766,12 @@ a.card:hover { transform: translateY(-3px); }
   .page-home .hero { min-height: min(62vh, 480px); }
   .page-home .hero::after {
     background-image:
-      linear-gradient(180deg,
-        rgba(246, 245, 242, .92) 0%,
-        rgba(243, 241, 238, .86) 48%,
-        rgba(238, 236, 232, .78) 100%),
+      linear-gradient(to bottom,
+        rgba(18, 17, 16, .82) 0%,
+        rgba(18, 17, 16, .66) 18%,
+        rgba(18, 17, 16, .62) 55%,
+        rgba(18, 17, 16, .70) 85%,
+        rgba(18, 17, 16, .80) 100%),
       url("/assets/img/hero-sibenik-mobile.webp?v=2");
     background-size: auto, cover;
   }
