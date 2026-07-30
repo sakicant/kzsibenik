@@ -1,0 +1,22 @@
+{
+  "slug": "",
+  "title": "Christian Community Šibenik",
+  "description": "Christian Community Šibenik - gatherings, video messages, library and community news.",
+  "body_class": "page-home",
+  "schema": {
+    "@context": "https://schema.org",
+    "@type": "Church",
+    "name": "Kršćanska zajednica Šibenik",
+    "alternateName": "Christian Community Šibenik",
+    "url": "https://krscanskazajednicasibenik.hr/en/",
+    "logo": "https://krscanskazajednicasibenik.hr/assets/img/logo-black.png",
+    "image": "https://krscanskazajednicasibenik.hr/assets/img/og-image.png",
+    "email": "info@krscanskazajednicasibenik.hr",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Šibenik",
+      "postalCode": "22000",
+      "addressCountry": "HR"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "",
+  "title": "Kršćanska zajednica Šibenik",
+  "description": "Kršćanska zajednica Šibenik - okupljanja, video poruke, knjižnica i obavijesti zajednice.",
+  "body_class": "page-home",
+  "schema": {
+    "@context": "https://schema.org",
+    "@type": "Church",
+    "name": "Kršćanska zajednica Šibenik",
+    "url": "https://krscanskazajednicasibenik.hr/",
+    "logo": "https://krscanskazajednicasibenik.hr/assets/img/logo-black.png",
+    "image": "https://krscanskazajednicasibenik.hr/assets/img/og-image.png",
+    "email": "info@krscanskazajednicasibenik.hr",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Šibenik",
+      "postalCode": "22000",
+      "addressCountry": "HR"
+    }
+  }
+}

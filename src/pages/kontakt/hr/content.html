@@ -1,0 +1,80 @@
+<section class="hero hero-compact">
+  <div class="wrap hero-inner">
+    <nav class="crumbs" aria-label="Putanja">
+      <a href="/">Naslovna</a><span aria-hidden="true">/</span><span>Kontakt</span>
+    </nav>
+    <span class="eyebrow">Javite se</span>
+    <h1>Kontakt</h1>
+    <div class="ph-lines is-short hero-lead"><i></i><i></i></div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="contact-grid reveal">
+      <div class="panel">
+        <h2>Pošaljite poruku</h2>
+        <form class="form-grid" method="post" action="/contact.php" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="ime">Ime i prezime</label>
+              <input type="text" id="ime" name="ime" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="tema">Tema</label>
+            <input type="text" id="tema" name="tema" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="poruka">Poruka</label>
+            <textarea id="poruka" name="poruka" required></textarea>
+          </div>
+
+          <!-- Honeypot. Deliberately named so no browser tries to autofill it;
+               a filled value means a bot, not a visitor. -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="hp_zz">Ostavite prazno</label>
+            <input type="text" id="hp_zz" name="hp_zz" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="btn-row">
+            <button type="submit" class="btn btn-primary">Pošaljite poruku</button>
+          </div>
+          <p class="form-note">Odgovaramo u roku od nekoliko dana.</p>
+        </form>
+      </div>
+
+      <div>
+        <div class="panel" style="margin-bottom:22px">
+          <h2>Podaci</h2>
+          <dl class="contact-list">
+            <div>
+              <dt>Adresa</dt>
+              <dd data-placeholder>ulica i broj, 22000 Šibenik</dd>
+            </div>
+            <div>
+              <dt>Telefon</dt>
+              <dd data-placeholder>broj dolazi ovdje</dd>
+            </div>
+            <div>
+              <dt>E-mail</dt>
+              <dd><a href="mailto:info@krscanskazajednicasibenik.hr">info@krscanskazajednicasibenik.hr</a></dd>
+            </div>
+            <div>
+              <dt>Okupljanja</dt>
+              <dd data-placeholder>dani i vremena dolaze ovdje</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="ph-media is-wide" style="min-height:280px">Karta dolazi ovdje</div>
+      </div>
+    </div>
+
+    <p class="ph-note"><strong>Napomena:</strong> obrazac šalje na <code>/contact.php</code> i radit će čim stranica sjedne na FTP hosting. Na Vercel pregledu slanje ne prolazi jer tamo nema PHP-a.</p>
+  </div>
+</section>
