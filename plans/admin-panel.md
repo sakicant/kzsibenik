@@ -21,8 +21,6 @@ sits on the FTP host. Still needed to start:
 
 - [ ] Database name, user and password
 - [ ] PHP version on the host
-- [ ] A YouTube Data API key, so pasting a video link fills in the title, date,
-      duration and view count on its own. Free, see the section below.
 
 ## The library is a separate thing
 
@@ -55,7 +53,7 @@ last_login_at
 status (draft/published), author_id, created_at, updated_at
 
 **videos** - id, youtube_id, title, description, published_at, duration,
-thumbnail_url, view_count, views_checked_at, sort_order, status, author_id
+sort_order, status, author_id
 
 News is bilingual, so either one row per language linked by a shared key, or
 HR and EN columns on one row. One row per language matches how `src/pages`
@@ -87,62 +85,34 @@ Copies available is derived: `copies_total` minus the loans with no
 Being unlisted is not by itself security. Real accounts with real passwords are
 what protect it; the obscure path just keeps it out of sight.
 
-## Paste a link, let YouTube fill in the rest
+## Videos are typed in by hand
 
-Yes, this works. Paste the URL in the panel, and the title, publish date,
-duration, thumbnail and view count come back on their own.
+**Decided: no YouTube API.** Whoever adds a video pastes the link and types the
+title and date themselves. That keeps the panel simple, needs no API key, and
+means nothing breaks if Google changes the rules.
 
-Two ways to fetch, and the difference matters:
+Two things still come for free, without any key:
 
-| | oEmbed | Data API v3 |
-|---|---|---|
-| Key needed | no | yes, free |
-| Title | yes | yes |
-| Thumbnail | yes | yes, several sizes |
-| Publish date | **no** | yes |
-| View count | **no** | yes |
-| Duration | **no** | yes |
+**Thumbnails.** `https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg` is a plain URL
+pattern, so the preview image appears on its own once the video id is known.
+`maxresdefault.jpg` is sharper but is missing on some older uploads;
+`hqdefault.jpg` always exists, so prefer it.
 
-oEmbed (`youtube.com/oembed?url=...&format=json`) is the zero-setup option but
-gives only the title and thumbnail. Since the design calls for date and view
-count, it has to be the **Data API**.
+**The video id.** Store the id, never the full URL - YouTube URLs come in
+several shapes (`watch?v=`, `youtu.be/`, `/live/`, `/shorts/`, plus tracking
+parameters). Parse the id out on save and keep only that. It also makes the
+embed and thumbnail URLs trivial to build.
 
-One call per video covers everything:
+**Drop view counts.** They were in the earlier draft because the API could
+supply them. Typed by hand they are wrong the day after they are entered, so
+the video cards should not show them at all. The placeholder line for views on
+the home page and the video page needs removing.
 
-```
-GET https://www.googleapis.com/youtube/v3/videos
-    ?part=snippet,statistics,contentDetails&id=VIDEO_ID&key=API_KEY
-```
-
-That costs 1 unit against a 10,000 unit daily quota, so it is effectively free
-at this scale.
-
-**Fetch on save, not on page load.** When a video is added, call the API once
-and write the result into the row. A page that called YouTube on every visit
-would be slow, would break whenever YouTube was unreachable, and would burn
-quota on every crawler hit.
-
-**View counts are the exception** - they change constantly, so a number stored
-once goes stale. Either refresh them on a daily cron across all videos (one
-call handles 50 ids at a time, so the whole channel costs 1 unit), or leave
-view counts off the page entirely. Worth deciding whether they are wanted at
-all; a low count on an old sermon is not necessarily a good look.
-
-**The key must stay server-side.** In `config.php`, which is gitignored, and
-never in JavaScript, where anyone could read and use it. Lock the key to the
-YouTube Data API and to the server IP in the Google Cloud console.
-
-Getting the key: Google Cloud console, create a project, enable "YouTube Data
-API v3", create an API key. Free, no billing card.
-
-**Worth considering:** the same API can list the whole channel's uploads
-(`playlistItems.list` on the uploads playlist). "Add a video" could become
-"sync the channel", where new uploads appear on their own and the panel is only
-used to hide ones that should not show. Fewer steps for whoever maintains it.
-
-Store the video id, never the full URL - YouTube URLs come in several shapes
-(`watch?v=`, `youtu.be/`, `/live/`, `/shorts/`, with extra query parameters).
-Parse the id out on save and keep that.
+If this ever becomes tedious, the Data API can fill in title, date, duration
+and view count from the link alone, or sync the whole channel so new uploads
+appear on their own. One free key, 1 quota unit per video against a daily
+10,000. Not needed now, just noting it so the option is not rediscovered from
+scratch.
 
 ## How the public pages get the content
 
@@ -164,7 +134,7 @@ probably the right trade. Worth a decision before writing code.
 3. Login, sessions, CSRF, rate limiting
 4. Role checks as a single guard used by every admin page
 5. News CRUD
-6. Video CRUD, with the YouTube fetch on save and a daily view-count refresh
+6. Video CRUD: paste the link, type the title and date, thumbnail derived
 7. Library inventory: books, loans, availability
 8. User management for superadmin
 9. Wire the public news and video pages to the data

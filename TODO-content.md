@@ -60,6 +60,9 @@ grep -rn "data-placeholder\|ph-lines\|ph-note\|ph-media" src/pages/
 
 **Video poruke**
 - [ ] Which videos from the YouTube channel go on the page, with title and date
+- Decided: entered by hand through the admin panel, no YouTube API. Thumbnails
+      still come free from `i.ytimg.com/vi/<id>/hqdefault.jpg`. View counts are
+      gone from the cards - typed by hand they would be wrong within a day.
 
 **Knjižnica**
 - [ ] Book list for the public page: title, author, short description, cover
@@ -69,9 +72,14 @@ grep -rn "data-placeholder\|ph-lines\|ph-note\|ph-media" src/pages/
       page. See `plans/admin-panel.md`.
 
 **Doniraj**
-- [ ] Recipient name, IBAN, model and reference number, payment description
+- [ ] QR code image for the account (HUB3A). Placeholder square is in place on
+      the bank transfer card; drop the picture in and swap the `.ph-media` for
+      an `<img>`.
+- [ ] Copy for "Osobno na bogoslužju" and "U naravi"
 - [ ] Optional: a note on what the giving supports
 - [ ] Decide whether online card payment is wanted
+- Done: recipient KZ Šibenik, IBAN HR20 2360 0001 1026 6109 0, payment
+      description. Model and reference dropped, not needed.
 
 ## Design decisions still open
 
