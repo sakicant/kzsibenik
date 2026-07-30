@@ -58,9 +58,12 @@ grep -rn "data-placeholder\|ph-lines\|ph-note\|ph-media" src/pages/
 
 **O nama**
 - [ ] Povijest: key years with what happened, old photographs if any
-- [ ] Vodstvo: portrait photos and short bios for the four elders. Four of the
-      five sections are still empty - Gostoprimstvo, Služba slavljenja, Dječja
-      služba and Tehnička služba all need names and roles.
+- [ ] Vodstvo: portrait photos and short bios for the four elders and for
+      Mateja Šakić. Four of the six sections are still empty - Gostoprimstvo,
+      Služba slavljenja, Dječja služba and Tehnička služba need names and roles.
+- [ ] Mateja's role currently reads "Vodi knjižnicu" rather than a title,
+      because the gendered forms in Croatian would be a guess. Say which you
+      want and it changes in one line.
 - [ ] Vjerovanje: the statements of faith with Bible references
 - [ ] Decide whether svjedočanstva becomes a fourth item in the dropdown
 
