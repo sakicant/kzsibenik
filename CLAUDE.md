@@ -26,6 +26,12 @@ Website for Kršćanska zajednica Šibenik (krscanskazajednicasibenik.hr).
   visitor's zone, and handles both DST switches. Its strings come from
   `data-` attributes on `.hero-meta` so `script.js` stays language-agnostic.
   The static sentence inside is the no-JS fallback - keep it meaningful.
+- **Replacing an image in place does not reach anyone who already has it.**
+  Asset file names are stable, so a swapped photo needs a new URL: bump the
+  `?v=` on the hero urls in `styles.css`. `vercel.json` serves `/assets/` with
+  `must-revalidate` rather than `immutable` for the same reason - `immutable`
+  tells a browser never to ask again, which is only safe when the file name
+  changes with the content.
 - Photographs get exported to WebP at two widths and **saved without EXIF** -
   phone pictures carry GPS coordinates. Check contrast after changing any
   image that sits behind text; the home hero currently clears AAA at 7.2:1.

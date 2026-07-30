@@ -651,7 +651,9 @@ a.card:hover { transform: translateY(-3px); }
 .hero h1 { margin-bottom: .38em; }
 
 /* Home hero photograph. TEMPORARY - swap /assets/img/hero-sibenik*.webp when a
-   better picture turns up; nothing else needs touching.
+   better picture turns up, and bump the ?v= on both urls below. The file name
+   stays the same, so without a new query anyone holding a cached copy keeps
+   seeing the old picture.
    Three layers, top to bottom: a fade into the page background so the photo
    does not end on a hard edge, a wash that is near-opaque on the left where
    the text sits and thins out to the right, then the photo itself. */
@@ -683,7 +685,7 @@ a.card:hover { transform: translateY(-3px); }
       rgba(243, 241, 238, .90) 32%,
       rgba(240, 238, 234, .72) 62%,
       rgba(234, 232, 228, .56) 100%),
-    url("/assets/img/hero-sibenik.webp");
+    url("/assets/img/hero-sibenik.webp?v=2");
   background-size: auto, cover;
   background-position: center, center 45%;
   background-repeat: no-repeat;
@@ -701,7 +703,7 @@ a.card:hover { transform: translateY(-3px); }
         rgba(246, 245, 242, .92) 0%,
         rgba(243, 241, 238, .86) 48%,
         rgba(238, 236, 232, .78) 100%),
-      url("/assets/img/hero-sibenik-mobile.webp");
+      url("/assets/img/hero-sibenik-mobile.webp?v=2");
     background-size: auto, cover;
   }
 }
