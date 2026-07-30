@@ -159,6 +159,92 @@
     sync();
   });
 
+  /* ------------------------------------------------------- gathering countdown
+     Counts down to the next Saturday 19:00 *in Zagreb*, not in whatever zone
+     the visitor happens to be in, so someone watching from abroad sees the
+     real time remaining. Rolls over on its own every week. */
+  var countdowns = doc.querySelectorAll("[data-countdown]");
+  if (countdowns.length) {
+    var ZONE = "Europe/Zagreb";
+    var HOUR = 19;          // gathering starts at 19:00
+    var RUNS_FOR = 2 * 3600e3;  // treat it as under way for two hours
+
+    // How far ahead of UTC the zone is at this instant, in ms.
+    var zoneOffset = function (date) {
+      var parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: ZONE, hour12: false,
+        year: "numeric", month: "2-digit", day: "2-digit",
+        hour: "2-digit", minute: "2-digit", second: "2-digit"
+      }).formatToParts(date);
+      var p = {};
+      parts.forEach(function (part) { if (part.type !== "literal") { p[part.type] = part.value; } });
+      // Some engines report midnight as hour 24.
+      var hour = p.hour === "24" ? 0 : Number(p.hour);
+      var asUTC = Date.UTC(Number(p.year), Number(p.month) - 1, Number(p.day),
+                           hour, Number(p.minute), Number(p.second));
+      return asUTC - date.getTime();
+    };
+
+    // Real instant of a Zagreb wall-clock time. Resolved twice because the
+    // offset can differ between now and the target across a DST change.
+    var instantOf = function (y, m, d, h) {
+      var wall = Date.UTC(y, m, d, h, 0, 0);
+      var guess = wall - zoneOffset(new Date(wall));
+      return wall - zoneOffset(new Date(guess));
+    };
+
+    var nextGathering = function (now) {
+      var zagreb = new Date(now.getTime() + zoneOffset(now));
+      var y = zagreb.getUTCFullYear(), m = zagreb.getUTCMonth(), d = zagreb.getUTCDate();
+      // 6 = Saturday. Wind back to this week's Saturday, then step forward.
+      var start = instantOf(y, m, d + ((6 - zagreb.getUTCDay() + 7) % 7), HOUR);
+      if (now.getTime() >= start + RUNS_FOR) {
+        start = instantOf(y, m, d + ((6 - zagreb.getUTCDay() + 7) % 7) + 7, HOUR);
+      }
+      return start;
+    };
+
+    var render = function (el) {
+      var out = el.querySelector("[data-countdown-value]");
+      if (!out) { return; }
+      var now = new Date();
+      var start = nextGathering(now);
+      var left = start - now.getTime();
+
+      if (left <= 0) {
+        out.textContent = el.getAttribute("data-live");
+        return;
+      }
+      var s = Math.floor(left / 1000);
+      var d = Math.floor(s / 86400);
+      var h = Math.floor((s % 86400) / 3600);
+      var m = Math.floor((s % 3600) / 60);
+      var sec = s % 60;
+      var pad = function (n) { return n < 10 ? "0" + n : String(n); };
+
+      var bits = [];
+      if (d) { bits.push(d + " " + el.getAttribute("data-unit-d")); }
+      if (d || h) { bits.push(pad(h) + " " + el.getAttribute("data-unit-h")); }
+      bits.push(pad(m) + " " + el.getAttribute("data-unit-m"));
+      bits.push(pad(sec) + " " + el.getAttribute("data-unit-s"));
+
+      out.textContent = el.getAttribute("data-lead") + " " + bits.join(" ");
+    };
+
+    countdowns.forEach(function (el) {
+      // Only take over the fallback text once we know Intl can do the zone
+      // maths; otherwise the static "every Saturday" sentence stays put.
+      try {
+        new Intl.DateTimeFormat("en-US", { timeZone: ZONE }).format(new Date());
+      } catch (e) {
+        return;
+      }
+      el.classList.add("is-live");
+      render(el);
+      window.setInterval(function () { render(el); }, 1000);
+    });
+  }
+
   /* ------------------------------------------------------------ footer year */
   doc.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = String(new Date().getFullYear());

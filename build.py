@@ -121,24 +121,76 @@ def build_hreflang_block(variants):
     return "\n".join(links)
 
 
+# Inline flags rather than emoji: Windows renders emoji flags as bare letter
+# pairs, so a 🇭🇷 would show up as "HR" for a large share of visitors.
+# No ids or clipPaths inside - the same markup is emitted more than once
+# per page and duplicate ids would collide.
+FLAG_SVG = {
+    "hr": (
+        '<svg class="flag" viewBox="0 0 60 30" aria-hidden="true">'
+        '<rect width="60" height="10" fill="#ff0000"/>'
+        '<rect y="10" width="60" height="10" fill="#fff"/>'
+        '<rect y="20" width="60" height="10" fill="#171796"/>'
+        '<rect x="24.5" y="7.5" width="11" height="12" fill="#fff" stroke="#171796" stroke-width="1"/>'
+        '<path fill="#ff0000" d="M24.5 7.5h2.75v3H24.5zm5.5 0h2.75v3H30zm-2.75 3H30v3h-2.75zm5.5 0h2.75v3h-2.75z'
+        'M24.5 13.5h2.75v3H24.5zm5.5 0h2.75v3H30zm-2.75 3H30v3h-2.75zm5.5 0h2.75v3h-2.75z"/>'
+        "</svg>"
+    ),
+    "en": (
+        '<svg class="flag" viewBox="0 0 60 30" aria-hidden="true">'
+        '<rect width="60" height="30" fill="#012169"/>'
+        '<path d="M0 0l60 30M60 0L0 30" stroke="#fff" stroke-width="6"/>'
+        '<path d="M0 0l60 30M60 0L0 30" stroke="#c8102e" stroke-width="3"/>'
+        '<path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/>'
+        '<path d="M30 0v30M0 15h60" stroke="#c8102e" stroke-width="6"/>'
+        "</svg>"
+    ),
+}
+
+LANGUAGE_NAMES = {"hr": "Hrvatski", "en": "English"}
+SWITCHER_LABEL = {"hr": "Jezik", "en": "Language"}
+
+
 def build_lang_switcher(variants, current_lang, context):
-    """HR | EN switcher. A language links to its own translation of the current
+    """Flag switcher. A language links to its own translation of the current
     page when one exists; otherwise it falls back to that language's home.
-    `context` ("desktop"/"mobile") only keeps the two copies' ids unique."""
+
+    On desktop it is a dropdown showing the current flag and code. In the
+    mobile menu it is a plain row of both flags, since a dropdown inside an
+    already-open menu is one tap too many."""
     if len(LANGUAGES) < 2:
         return ""
-    items = []
-    for lang in LANGUAGES:
-        label = LANGUAGE_LABELS[lang]
+
+    def link(lang, extra_class=""):
         target = variants[lang].get("slug", "") if lang in variants else ""
         url = url_path(lang, target)
         current = ' aria-current="true"' if lang == current_lang else ""
-        cls = "lang-item is-active" if lang == current_lang else "lang-item"
-        items.append(f'<a href="{url}" class="{cls}" hreflang="{lang}" lang="{lang}"{current}>{label}</a>')
-    label = {"hr": "Jezik", "en": "Language"}[current_lang]
-    return (f'<div class="lang-switch" role="group" aria-label="{label}" data-ctx="{context}">'
-            + '<span class="lang-sep" aria-hidden="true"></span>'.join(items)
-            + "</div>")
+        cls = ("lang-item is-active" if lang == current_lang else "lang-item")
+        if extra_class:
+            cls += " " + extra_class
+        return (f'<a href="{url}" class="{cls}" hreflang="{lang}" lang="{lang}"{current}>'
+                f'{FLAG_SVG[lang]}<span>{LANGUAGE_LABELS[lang]}</span>'
+                f'<span class="sr-only"> - {LANGUAGE_NAMES[lang]}</span></a>')
+
+    aria = SWITCHER_LABEL[current_lang]
+
+    if context == "mobile":
+        return (f'<div class="lang-switch lang-switch-row" role="group" aria-label="{aria}">'
+                + "".join(link(lang) for lang in LANGUAGES)
+                + "</div>")
+
+    menu_id = "langMenu"
+    return (
+        '<div class="lang-switch nav-drop" data-drop>'
+        f'<button type="button" class="nav-drop-btn lang-current" aria-expanded="false" '
+        f'aria-controls="{menu_id}" aria-label="{aria}">'
+        f'{FLAG_SVG[current_lang]}<span>{LANGUAGE_LABELS[current_lang]}</span>'
+        '<span class="caret" aria-hidden="true"></span>'
+        "</button>"
+        f'<div class="nav-drop-menu lang-menu" id="{menu_id}">'
+        + "".join(link(lang) for lang in LANGUAGES)
+        + "</div></div>"
+    )
 
 
 _PARTIAL_CACHE = {}

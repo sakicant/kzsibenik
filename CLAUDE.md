@@ -19,6 +19,13 @@ Website for Kršćanska zajednica Šibenik (krscanskazajednicasibenik.hr).
 - Every `main > section` past the hero gets a Š watermark from
   `styles.css`, cycling left, right, centre. It is automatic - do not add
   watermark markup to pages.
+- The language switcher markup, flags included, is generated in `build.py`
+  (`build_lang_switcher`). Do not hand-write it into a partial. Flags are
+  inline SVG on purpose: Windows renders emoji flags as bare letter pairs.
+- The hero countdown targets Saturday 19:00 **Europe/Zagreb**, not the
+  visitor's zone, and handles both DST switches. Its strings come from
+  `data-` attributes on `.hero-meta` so `script.js` stays language-agnostic.
+  The static sentence inside is the no-JS fallback - keep it meaningful.
 - All colour lives in the `:root` block at the top of `styles.css`. The brand
   colours are not decided yet, so do not hardcode a hex value anywhere else.
 - Body copy is not written yet. Placeholders are deliberate and visible:

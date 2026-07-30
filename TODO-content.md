@@ -27,6 +27,9 @@ grep -rn "data-placeholder\|ph-lines\|ph-note\|ph-media" src/pages/
 - [ ] Full legal name of the community (for the donation page and schema)
 - [ ] Phone number
 - [ ] Confirm `info@krscanskazajednicasibenik.hr` is the right inbox
+- [ ] Facebook and Instagram page URLs. Both show as greyed, unclickable icons
+      in the footer until they arrive; the comment above the block in
+      `src/partials/footer.*.html` says exactly what to swap.
 - [ ] One-line description of the community (used in the footer and meta tags)
 
 **Homepage**
