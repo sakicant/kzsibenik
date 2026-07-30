@@ -35,8 +35,14 @@ grep -rn "data-placeholder\|ph-lines\|ph-note\|ph-media" src/pages/
 **Homepage**
 - [ ] Intro paragraph under the main heading
 - [ ] Bible verse for the quote block
-- [ ] Photograph of the community
 - [ ] Any meeting day besides Saturday, if there is one
+- [ ] **Hero photograph is a temporary stand-in** (Šibenik centre park). To
+      swap it, drop the replacement over `assets/img/hero-sibenik.webp` and
+      `hero-sibenik-mobile.webp` at 1600px and 1000px wide. If the new picture
+      is much darker, re-check the overlay in `styles.css` - the text sits on
+      the left and currently clears AAA at 7.2:1.
+- Done: community photograph in the "O nama" block. EXIF, GPS included, is
+      stripped from the exported WebP.
 
 **Novosti**
 - [ ] First few notices: title, date, short text, image

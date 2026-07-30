@@ -26,6 +26,9 @@ Website for Kršćanska zajednica Šibenik (krscanskazajednicasibenik.hr).
   visitor's zone, and handles both DST switches. Its strings come from
   `data-` attributes on `.hero-meta` so `script.js` stays language-agnostic.
   The static sentence inside is the no-JS fallback - keep it meaningful.
+- Photographs get exported to WebP at two widths and **saved without EXIF** -
+  phone pictures carry GPS coordinates. Check contrast after changing any
+  image that sits behind text; the home hero currently clears AAA at 7.2:1.
 - All colour lives in the `:root` block at the top of `styles.css`. The brand
   colours are not decided yet, so do not hardcode a hex value anywhere else.
 - Body copy is not written yet. Placeholders are deliberate and visible:
