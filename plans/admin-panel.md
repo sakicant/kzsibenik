@@ -13,25 +13,24 @@ Through it the community adds **news notices** and **YouTube videos**.
 Everything else on the site, the library included, stays static and is edited
 in `src/` and rebuilt with `build.py`.
 
-## Blocker before any of it can be built
+## Before any of it can be built
 
-It needs **PHP and a MySQL database**. The Vercel preview is static, so the
-panel cannot exist there at all - it only works once the site sits on the FTP
-host. Before starting:
+**Confirmed: the FTP host will have MySQL and PHP.** The Vercel preview is
+static, so the panel cannot exist there at all - it only works once the site
+sits on the FTP host. Still needed to start:
 
-- [ ] Confirm the FTP host gives us MySQL (or MariaDB) and which PHP version
-- [ ] Get the database name, user and password
+- [ ] Database name, user and password
+- [ ] PHP version on the host
 
-Without a database the alternative is writing to JSON files on disk. That works
-on shared hosting and skips the DB entirely, but it makes concurrent edits and
-per-user accounts clumsier. MySQL is the better shape if it is available.
+## The library is a separate thing
 
-## Open question
+Settled: the library service gets its own small backend inside the panel,
+holding the catalogue, the stock and the borrowing state. **It is not connected
+to the front end in any way** - the public `/knjiznica/` page stays static and
+is edited in `src/pages/knjiznica/`.
 
-The brief lists a **library-only** role, but also says the library stays
-static. Those pull against each other. Either the library gets managed through
-the panel after all (books table, copies held, copies free, who borrowed what),
-or that role is not needed yet. Worth settling before building the roles table.
+So a `library` user logs into the same panel and sees only their own inventory
+screens. Nothing they do there changes a public page.
 
 ## Roles
 
@@ -40,7 +39,7 @@ or that role is not needed yet. Worth settling before building the roles table.
 | `superadmin` | Everything, including creating and disabling other accounts |
 | `news` | Add, edit and unpublish news notices |
 | `video` | Add, edit and remove YouTube videos |
-| `library` | See the open question above |
+| `library` | The library inventory only. Nothing public. |
 
 Permissions are checked on every request on the server, not just hidden in the
 menu. A `news` user who types the video URL directly gets refused.
@@ -59,6 +58,13 @@ status, author_id
 News is bilingual, so either one row per language linked by a shared key, or
 HR and EN columns on one row. One row per language matches how `src/pages`
 already works.
+
+**books** - id, title, author, isbn, category, copies_total, notes
+
+**loans** - id, book_id, borrower_name, borrowed_at, due_at, returned_at
+
+Copies available is derived: `copies_total` minus the loans with no
+`returned_at`. Storing it as its own column would drift out of sync.
 
 ## Security rules
 
@@ -94,11 +100,12 @@ probably the right trade. Worth a decision before writing code.
 
 ## Rough order of work
 
-1. Settle the database question and the library role
+1. Get the database credentials from the host
 2. `config.php` + `db.php` + `schema.sql`
 3. Login, sessions, CSRF, rate limiting
 4. Role checks as a single guard used by every admin page
 5. News CRUD
 6. Video CRUD
-7. User management for superadmin
-8. Wire the public news and video pages to the data
+7. Library inventory: books, loans, availability
+8. User management for superadmin
+9. Wire the public news and video pages to the data

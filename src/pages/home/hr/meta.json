@@ -13,6 +13,7 @@
     "email": "info@krscanskazajednicasibenik.hr",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "Ul. Šibenske narodne glazbe 3",
       "addressLocality": "Šibenik",
       "postalCode": "22000",
       "addressCountry": "HR"

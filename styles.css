@@ -60,7 +60,8 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
-  scroll-padding-top: 96px;
+  /* Clears the sticky header when an in-page anchor is jumped to. */
+  scroll-padding-top: 108px;
 }
 
 body {
@@ -225,6 +226,39 @@ main > section:nth-of-type(3n+1)::after { left: 50%; transform: translateX(-50%)
 .grid { display: grid; gap: clamp(16px, 2vw, 26px); }
 .grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(266px, 1fr)); }
+.grid-4 { grid-template-columns: repeat(auto-fit, minmax(212px, 1fr)); }
+
+/* In-page jump menu for long pages with several named sections. */
+.page-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: clamp(28px, 3.4vw, 44px);
+}
+.page-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border: 1px solid var(--line-firm);
+  border-radius: 999px;
+  background: var(--panel);
+  font-size: .9rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  transition: background .18s ease, border-color .18s ease, color .18s ease;
+}
+.page-nav a:hover { background: #fff; border-color: var(--ink); color: var(--ink); }
+.page-nav a::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: .65;
+}
+/* Jump targets need no scroll-margin of their own: html's scroll-padding-top
+   already clears the sticky header, and setting both stacks the two offsets. */
 
 /* --------------------------------------------------------------------------
    5. Header
@@ -250,16 +284,16 @@ main > section:nth-of-type(3n+1)::after { left: 50%; transform: translateX(-50%)
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  min-height: 76px;
+  min-height: 88px;
 }
 
 .brand { display: flex; align-items: center; flex: 0 0 auto; }
 .brand-logo {
-  height: 50px;
+  height: 64px;
   width: auto;
   transition: height .25s ease, opacity .2s ease;
 }
-.site-header.is-stuck .brand-logo { height: 42px; }
+.site-header.is-stuck .brand-logo { height: 52px; }
 .brand:hover .brand-logo { opacity: .78; }
 
 .nav {
@@ -538,6 +572,14 @@ a.card:hover { transform: translateY(-3px); }
 }
 .hero-inner { position: relative; max-width: 760px; }
 .hero h1 { margin-bottom: .38em; }
+
+/* The site name is meant to sit on one line on desktop. It is wider than the
+   default hero column, so the home hero gets more room and a size capped
+   against the viewport. Mobile keeps the normal fluid size and wraps. */
+@media (min-width: 861px) {
+  .page-home .hero-inner { max-width: 940px; }
+  .page-home .hero h1 { white-space: nowrap; font-size: min(3.3rem, 5.8vw); }
+}
 .hero-lead {
   font-size: clamp(1.04rem, .97rem + .4vw, 1.2rem);
   color: var(--muted);
@@ -1159,9 +1201,9 @@ a.card:hover { transform: translateY(-3px); }
   .nav-toggle { display: inline-grid; }
   .mobile-nav { display: none; }
   .mobile-nav.is-open { display: flex; }
-  .header-inner { min-height: 68px; }
-  .brand-logo { height: 44px; }
-  .site-header.is-stuck .brand-logo { height: 40px; }
+  .header-inner { min-height: 76px; }
+  .brand-logo { height: 54px; }
+  .site-header.is-stuck .brand-logo { height: 46px; }
 }
 
 @media (max-width: 620px) {

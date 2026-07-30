@@ -16,15 +16,15 @@ grep -rn "data-placeholder\|ph-lines\|ph-note\|ph-media" src/pages/
   contact page, the footer and the schema on the homepage.
 - YouTube: **@krscanskazajednicasibenik**. Linked from the video messages page,
   the homepage, the footer and `sameAs` in the schema.
-- Location: the Google Business Profile pin (43.7366984, 15.8918039) is
-  embedded on the contact page and linked from the footer.
+- Location: **Ul. Šibenske narodne glazbe 3, 22000 Šibenik**. In the footer,
+  the contact page and the schema. The Google Business Profile pin
+  (43.7366984, 15.8918039) is embedded on the contact page.
+- Eldership: Marijan Kuvačić, Ivica Šupe, Frane Cinotti, Ante Mikulandra.
 
 ## Needed from the community
 
 **Identity and contact**
 - [ ] Full legal name of the community (for the donation page and schema)
-- [ ] Street address of the hall - the map pin is in, but the written address
-      is still a placeholder in the footer, the contact page and the schema
 - [ ] Phone number
 - [ ] Confirm `info@krscanskazajednicasibenik.hr` is the right inbox
 - [ ] One-line description of the community (used in the footer and meta tags)
@@ -44,7 +44,8 @@ grep -rn "data-placeholder\|ph-lines\|ph-note\|ph-media" src/pages/
 
 **O nama**
 - [ ] Povijest: key years with what happened, old photographs if any
-- [ ] Vodstvo: names, roles, short bios, portrait photos
+- [ ] Vodstvo: portrait photos and short bios for the four elders; the whole
+      worship team and technical team sections are still placeholders
 - [ ] Vjerovanje: the statements of faith with Bible references
 - [ ] Decide whether svjedočanstva becomes a fourth item in the dropdown
 
@@ -52,11 +53,11 @@ grep -rn "data-placeholder\|ph-lines\|ph-note\|ph-media" src/pages/
 - [ ] Which videos from the YouTube channel go on the page, with title and date
 
 **Knjižnica**
-- [ ] Book list: title, author, short description, cover image. Static, edited
-      in `src/pages/knjiznica/`.
-- [ ] Settle whether the librarian role in the admin panel is still wanted -
-      the brief asks for a library-only role but also says the library stays
-      static. See the open question in `plans/admin-panel.md`.
+- [ ] Book list for the public page: title, author, short description, cover
+      image. Static, edited in `src/pages/knjiznica/`.
+- Decided: the librarian gets her own inventory screens inside the admin panel
+      (stock, availability, who borrowed what), with no link to the public
+      page. See `plans/admin-panel.md`.
 
 **Doniraj**
 - [ ] Recipient name, IBAN, model and reference number, payment description
