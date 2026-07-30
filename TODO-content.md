@@ -36,7 +36,11 @@ grep -rn "data-placeholder\|ph-lines\|ph-note\|ph-media" src/pages/
 - [ ] Intro paragraph under the main heading
 - [ ] Bible verse for the quote block
 - [ ] Any meeting day besides Saturday, if there is one
-- [ ] **Hero photograph is a temporary stand-in** (Šibenik centre park). To
+- [ ] The hero photograph has the figure on the **left**, which is where the
+      heading and buttons sit, so the wash mutes exactly the most interesting
+      part of it. Options: shift the text to the right on the home hero, crop
+      the picture so he sits further out, or pick a shot with an emptier left.
+- [ ] **Hero photograph is a stand-in** (view over Šibenik). To
       swap it, drop the replacement over `assets/img/hero-sibenik.webp` and
       `hero-sibenik-mobile.webp` at 1600px and 1000px wide. If the new picture
       is much darker, re-check the overlay in `styles.css` - the text sits on

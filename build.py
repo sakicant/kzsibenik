@@ -57,7 +57,11 @@ def compute_asset_version():
 
 
 def read(path):
-    with open(path, "r", encoding="utf-8") as f:
+    # utf-8-sig, not utf-8: an editor that saves with a BOM would otherwise
+    # leave U+FEFF at the start of the partial. It is not whitespace, so the
+    # browser renders it as a real line box and pushes the page down by a
+    # line height. Reading it away here costs nothing when there is no BOM.
+    with open(path, "r", encoding="utf-8-sig") as f:
         return f.read()
 
 

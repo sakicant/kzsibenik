@@ -29,6 +29,17 @@ Website for Kršćanska zajednica Šibenik (krscanskazajednicasibenik.hr).
 - Photographs get exported to WebP at two widths and **saved without EXIF** -
   phone pictures carry GPS coordinates. Check contrast after changing any
   image that sits behind text; the home hero currently clears AAA at 7.2:1.
+- The header is **fixed**, not sticky, so it takes no space and every hero
+  starts at the very top of the page with its photograph running behind the
+  bar. That is why `.hero` adds `--header-h` to its own top padding - a new
+  page without a hero would slide under the header.
+- Person grids use `auto-fill`, never `auto-fit`. `auto-fit` collapses the
+  empty tracks, so a section with two people would stretch their portraits to
+  twice the size of a section with four.
+- `build.py` reads with `utf-8-sig`. A BOM at the start of a partial is not
+  whitespace and renders as a real line box, which once pushed the whole page
+  down by a line. PowerShell's `-Encoding UTF8` writes one - prefer the Write
+  tool, or `System.Text.UTF8Encoding($false)`.
 - The header is transparent while it is over the hero and solid after it. The
   gradient on `.site-header::before` is not decoration: without it the menu
   sits on the photograph at 3.4:1, under the 4.5 minimum. If the hero picture

@@ -45,6 +45,11 @@
   --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
+  /* Header height. The bar is fixed and sits over the page rather than taking
+     up space, so every hero adds this to its own top padding to keep its
+     content clear of it. */
+  --header-h: 88px;
+
   /* Rhythm */
   --wrap: 1140px;
   --gutter: 22px;
@@ -245,7 +250,11 @@ main > section:nth-of-type(3n+1)::after { left: 50%; transform: translateX(-50%)
 .grid { display: grid; gap: clamp(16px, 2vw, 26px); }
 .grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(266px, 1fr)); }
-.grid-4 { grid-template-columns: repeat(auto-fit, minmax(212px, 1fr)); }
+/* auto-fill, not auto-fit: auto-fit collapses the tracks nobody occupies, so a
+   section with two people would stretch them across the full row and their
+   portraits would come out far larger than a section with four. auto-fill
+   keeps the empty tracks, so every card is the same width on every section. */
+.grid-4 { grid-template-columns: repeat(auto-fill, minmax(212px, 1fr)); }
 
 /* In-page jump menu for long pages with several named sections. */
 .page-nav {
@@ -282,11 +291,15 @@ main > section:nth-of-type(3n+1)::after { left: 50%; transform: translateX(-50%)
 /* --------------------------------------------------------------------------
    5. Header
    -------------------------------------------------------------------------- */
-/* Over the hero the header carries no background of its own. Once it clears
-   the hero it becomes the solid bar and stays pinned. */
+/* Fixed rather than sticky, so it takes up no space in the flow and the hero
+   starts at the very top of the page with the photograph running behind the
+   bar. Over the hero it carries no background of its own; once it clears the
+   hero it becomes the solid bar and stays there for the rest of the scroll. */
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 60;
   background: transparent;
   border-bottom: 1px solid transparent;
@@ -619,7 +632,8 @@ a.card:hover { transform: translateY(-3px); }
    -------------------------------------------------------------------------- */
 .hero {
   position: relative;
-  padding: clamp(56px, 7vw, 108px) 0 clamp(48px, 6vw, 88px);
+  /* The fixed header floats over this, so its height is added on top. */
+  padding: calc(clamp(56px, 7vw, 108px) + var(--header-h)) 0 clamp(48px, 6vw, 88px);
   overflow: hidden;
 }
 .hero::before {
@@ -644,7 +658,8 @@ a.card:hover { transform: translateY(-3px); }
 .page-home .hero {
   display: flex;
   align-items: center;
-  min-height: min(74vh, 600px);
+  /* Full height minus nothing: the header sits on top of it, not above it. */
+  min-height: min(84vh, 680px);
 }
 
 /* The photo and its wash live on a layer of their own so the bottom edge can
@@ -761,7 +776,7 @@ a.card:hover { transform: translateY(-3px); }
   .hero-meta.is-live::before { animation: none; opacity: 1; }
 }
 
-.hero-compact { padding: clamp(44px, 5vw, 74px) 0 clamp(26px, 3vw, 40px); }
+.hero-compact { padding: calc(clamp(44px, 5vw, 74px) + var(--header-h)) 0 clamp(26px, 3vw, 40px); }
 .hero-compact h1 { margin-bottom: .3em; }
 
 /* Breadcrumb */
@@ -834,6 +849,8 @@ a.card:hover { transform: translateY(-3px); }
   aspect-ratio: 3 / 2;
   object-fit: cover;
 }
+/* For a source that is nearer square, so a 3:2 crop would cut too much away. */
+.photo.is-tall img { aspect-ratio: 4 / 3; }
 
 [data-placeholder] {
   color: var(--muted-soft);
@@ -1485,6 +1502,7 @@ a.social:hover {
 }
 
 @media (max-width: 860px) {
+  :root { --header-h: 76px; }
   .nav { display: none; }
   .nav-toggle { display: inline-grid; }
   .mobile-nav { display: none; }
