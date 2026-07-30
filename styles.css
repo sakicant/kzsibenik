@@ -622,33 +622,49 @@ a.card:hover { transform: translateY(-3px); }
   display: flex;
   align-items: center;
   min-height: min(74vh, 600px);
-  border-bottom: 1px solid var(--line);
+}
+
+/* The photo and its wash live on a layer of their own so the bottom edge can
+   be masked to transparent. Fading to a flat colour instead would show a seam:
+   the body background is a multi-stop gradient, so it is never exactly one
+   colour at the point where the hero ends. Masking lets whatever the body is
+   painting carry straight on underneath. */
+.page-home .hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  /* Reset the section-watermark geometry, which also targets this pseudo. */
+  width: auto;
+  aspect-ratio: auto;
+  transform: none;
+  opacity: 1;
   background-image:
-    linear-gradient(to bottom, rgba(233, 231, 227, 0) 60%, var(--paper-2) 100%),
     linear-gradient(100deg,
       rgba(246, 245, 242, .955) 0%,
       rgba(243, 241, 238, .90) 32%,
       rgba(240, 238, 234, .72) 62%,
       rgba(234, 232, 228, .56) 100%),
     url("/assets/img/hero-sibenik.webp");
-  background-size: auto, auto, cover;
-  background-position: center, center, center 45%;
+  background-size: auto, cover;
+  background-position: center, center 45%;
   background-repeat: no-repeat;
+  -webkit-mask-image: linear-gradient(to bottom, #000 58%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 58%, transparent 100%);
 }
 /* The Š mark would only muddy the photo, so it drops back to a hint here. */
 .page-home .hero::before { opacity: .02; }
 
 @media (max-width: 860px) {
-  .page-home .hero {
-    min-height: min(62vh, 480px);
+  .page-home .hero { min-height: min(62vh, 480px); }
+  .page-home .hero::after {
     background-image:
-      linear-gradient(to bottom, rgba(233, 231, 227, 0) 68%, var(--paper-2) 100%),
       linear-gradient(180deg,
         rgba(246, 245, 242, .92) 0%,
         rgba(243, 241, 238, .86) 48%,
         rgba(238, 236, 232, .78) 100%),
       url("/assets/img/hero-sibenik-mobile.webp");
-    background-size: auto, auto, cover;
+    background-size: auto, cover;
   }
 }
 
