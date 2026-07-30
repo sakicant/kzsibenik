@@ -70,6 +70,13 @@ grep -rn "data-placeholder\|ph-lines\|ph-note\|ph-media" src/pages/
       still come free from `i.ytimg.com/vi/<id>/hqdefault.jpg`. View counts are
       gone from the cards - typed by hand they would be wrong within a day.
 
+**Galerija**
+- [ ] Photographs from the life of the community. Send them at full size -
+      resizing, WebP conversion and EXIF stripping happen here.
+- [ ] A one-line description for each picture, for accessibility and search.
+- [ ] Decide whether clicking a picture should open it full size in a lightbox.
+      Not built; the tiles are currently not clickable.
+
 **Knjižnica**
 - [ ] Book list for the public page: title, author, short description, cover
       image. Static, edited in `src/pages/knjiznica/`.

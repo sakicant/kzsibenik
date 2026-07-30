@@ -39,6 +39,7 @@ PRIORITY_BY_PAGE = {
     "novosti": "0.9",
     "o-nama": "0.9",
     "video-poruke": "0.8",
+    "galerija": "0.7",
     "kontakt": "0.8",
     "doniraj": "0.7",
     "knjiznica": "0.6",

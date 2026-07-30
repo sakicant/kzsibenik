@@ -50,6 +50,7 @@ Everything outside `src/` at the root that looks like a page folder
 | vodstvo | `/o-nama/vodstvo/` | `/en/about/leadership/` |
 | vjerovanje | `/o-nama/vjerovanje/` | `/en/about/beliefs/` |
 | video-poruke | `/video-poruke/` | `/en/messages/` |
+| galerija | `/galerija/` | `/en/gallery/` |
 | knjiznica | `/knjiznica/` | `/en/library/` |
 | doniraj | `/doniraj/` | `/en/give/` |
 | kontakt | `/kontakt/` | `/en/contact/` |
@@ -58,8 +59,8 @@ Menu shape: Naslovna, Novosti, O nama, Multimedija, Doniraj, Kontakt.
 
 "O nama" is both a page and a dropdown - the label links to `/o-nama/` and the
 small caret beside it opens Povijest, Vodstvo, Vjerovanje. "Multimedija" is a
-dropdown label only, with Video poruke and Knjižnica under it; those two keep
-their own top-level slugs.
+dropdown label only, with Video poruke, Galerija and Knjižnica under it; all
+three keep their own top-level slugs.
 
 ## Adding a page
 

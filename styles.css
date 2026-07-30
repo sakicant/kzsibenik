@@ -1031,6 +1031,45 @@ a.card:hover { transform: translateY(-3px); }
   margin-bottom: .3em;
 }
 
+/* Photo gallery. Every third-ish tile runs double width so the grid does not
+   read as a plain checkerboard. */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(228px, 1fr));
+  gap: clamp(12px, 1.6vw, 20px);
+}
+.gallery-item {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: var(--shadow-sm);
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.gallery-item:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.gallery-item img,
+.gallery-item .ph-media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 0;
+  border-radius: 0;
+}
+.gallery-item.is-wide { grid-column: span 2; }
+.gallery-item.is-wide img,
+.gallery-item.is-wide .ph-media { aspect-ratio: 16 / 9; }
+
+/* Below two columns a double-width tile would overflow the grid. */
+@media (max-width: 620px) {
+  .gallery { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .gallery-item.is-wide { grid-column: span 1; }
+  .gallery-item.is-wide img,
+  .gallery-item.is-wide .ph-media { aspect-ratio: 4 / 3; }
+}
+
 /* Library placeholder shelf */
 .shelf { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: clamp(16px, 2vw, 24px); }
 .shelf .book .ph-media { margin-bottom: 12px; }

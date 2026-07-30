@@ -73,6 +73,15 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://krscanskazajednicasibenik.hr/kontakt/"/>
   </url>
   <url>
+    <loc>https://krscanskazajednicasibenik.hr/en/gallery/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://krscanskazajednicasibenik.hr/galerija/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://krscanskazajednicasibenik.hr/en/gallery/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://krscanskazajednicasibenik.hr/galerija/"/>
+  </url>
+  <url>
     <loc>https://krscanskazajednicasibenik.hr/en/give/</loc>
     <lastmod>2026-07-30</lastmod>
     <changefreq>monthly</changefreq>
@@ -107,6 +116,15 @@
     <xhtml:link rel="alternate" hreflang="hr" href="https://krscanskazajednicasibenik.hr/novosti/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://krscanskazajednicasibenik.hr/en/news/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://krscanskazajednicasibenik.hr/novosti/"/>
+  </url>
+  <url>
+    <loc>https://krscanskazajednicasibenik.hr/galerija/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://krscanskazajednicasibenik.hr/galerija/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://krscanskazajednicasibenik.hr/en/gallery/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://krscanskazajednicasibenik.hr/galerija/"/>
   </url>
   <url>
     <loc>https://krscanskazajednicasibenik.hr/knjiznica/</loc>
