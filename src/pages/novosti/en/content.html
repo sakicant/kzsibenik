@@ -11,41 +11,22 @@
 
 <section class="section-tight">
   <div class="wrap">
-    <div class="news-list reveal">
+    <div class="news-list reveal" data-news-list data-page-size="10">
       <article class="news-item">
         <div class="ph-media is-wide">Image</div>
         <div>
-          <div class="news-meta"><span class="tag">Notice</span><span data-placeholder>date</span></div>
-          <h3 data-placeholder>Notice title</h3>
-          <div class="ph-lines is-short"><i></i><i></i></div>
-        </div>
-      </article>
-      <article class="news-item">
-        <div class="ph-media is-wide">Image</div>
-        <div>
-          <div class="news-meta"><span class="tag">Event</span><span data-placeholder>date</span></div>
-          <h3 data-placeholder>Notice title</h3>
-          <div class="ph-lines is-short"><i></i><i></i></div>
-        </div>
-      </article>
-      <article class="news-item">
-        <div class="ph-media is-wide">Image</div>
-        <div>
-          <div class="news-meta"><span class="tag">Announcement</span><span data-placeholder>date</span></div>
-          <h3 data-placeholder>Notice title</h3>
-          <div class="ph-lines is-short"><i></i><i></i></div>
-        </div>
-      </article>
-      <article class="news-item">
-        <div class="ph-media is-wide">Image</div>
-        <div>
-          <div class="news-meta"><span class="tag">Notice</span><span data-placeholder>date</span></div>
-          <h3 data-placeholder>Notice title</h3>
-          <div class="ph-lines is-short"><i></i><i></i></div>
+          <div class="news-meta"><span class="tag">Notice</span><span>30 July 2026</span></div>
+          <h3>Welcome to our new website</h3>
+          <p>We have launched a new site for Christian Community Šibenik. Here you will find the service time, video messages, notices and what our library holds. We will keep adding to it, so do come back.</p>
         </div>
       </article>
     </div>
 
-    <p class="ph-note"><strong>To decide:</strong> whether notices get added by hand in <code>src/pages/novosti/</code> or through a small admin screen later. For now the list is static.</p>
+    <!-- Only appears once there are more than ten notices. -->
+    <div class="btn-row" style="margin-top:28px">
+      <button type="button" class="btn btn-ghost" data-load-more hidden>Load more</button>
+    </div>
+
+    <p class="ph-note"><strong>To fill in:</strong> an image for the notice, and the rest of the notices. The page shows ten at a time and the "Load more" button appears on its own once there are more.</p>
   </div>
 </section>

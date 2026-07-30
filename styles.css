@@ -1080,6 +1080,20 @@ a.card:hover { transform: translateY(-3px); }
 }
 .contact-list dd { margin: 0; color: var(--ink); }
 
+/* The address opens the map. Underlined so it reads as a link rather than
+   plain text that happens to be clickable. */
+.address-link {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: rgba(23, 22, 20, .28);
+  text-underline-offset: 4px;
+  transition: text-decoration-color .18s ease, color .18s ease;
+}
+.address-link:hover {
+  color: var(--accent-deep);
+  text-decoration-color: currentColor;
+}
+
 .map-frame {
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1343,6 +1357,17 @@ a.social:hover {
 .site-footer a { color: rgba(255,255,255,.72); }
 .site-footer a:hover { color: #fff; }
 .footer-muted { color: rgba(255,255,255,.46); }
+.footer-address {
+  color: rgba(255,255,255,.62) !important;
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,.22);
+  text-underline-offset: 4px;
+  line-height: 1.6;
+}
+.footer-address:hover {
+  color: #fff !important;
+  text-decoration-color: rgba(255,255,255,.55);
+}
 .site-footer [data-placeholder] { color: rgba(255,255,255,.42); text-decoration-color: rgba(255,255,255,.22); }
 
 .footer-bottom {

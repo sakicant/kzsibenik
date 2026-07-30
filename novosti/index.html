@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css?v=c33ba0e00d">
+<link rel="stylesheet" href="/styles.css?v=e116711cf9">
 <script>document.documentElement.className+=" js-reveal";</script>
 <script type="application/ld+json">
 {
@@ -119,42 +119,23 @@
 
 <section class="section-tight">
   <div class="wrap">
-    <div class="news-list reveal">
+    <div class="news-list reveal" data-news-list data-page-size="10">
       <article class="news-item">
         <div class="ph-media is-wide">Slika</div>
         <div>
-          <div class="news-meta"><span class="tag">Obavijest</span><span data-placeholder>datum</span></div>
-          <h3 data-placeholder>Naslov obavijesti</h3>
-          <div class="ph-lines is-short"><i></i><i></i></div>
-        </div>
-      </article>
-      <article class="news-item">
-        <div class="ph-media is-wide">Slika</div>
-        <div>
-          <div class="news-meta"><span class="tag">Događaj</span><span data-placeholder>datum</span></div>
-          <h3 data-placeholder>Naslov obavijesti</h3>
-          <div class="ph-lines is-short"><i></i><i></i></div>
-        </div>
-      </article>
-      <article class="news-item">
-        <div class="ph-media is-wide">Slika</div>
-        <div>
-          <div class="news-meta"><span class="tag">Najava</span><span data-placeholder>datum</span></div>
-          <h3 data-placeholder>Naslov obavijesti</h3>
-          <div class="ph-lines is-short"><i></i><i></i></div>
-        </div>
-      </article>
-      <article class="news-item">
-        <div class="ph-media is-wide">Slika</div>
-        <div>
-          <div class="news-meta"><span class="tag">Obavijest</span><span data-placeholder>datum</span></div>
-          <h3 data-placeholder>Naslov obavijesti</h3>
-          <div class="ph-lines is-short"><i></i><i></i></div>
+          <div class="news-meta"><span class="tag">Obavijest</span><span>30. srpnja 2026.</span></div>
+          <h3>Dobro došli na našu novu web stranicu</h3>
+          <p>Pokrenuli smo novu stranicu Kršćanske zajednice Šibenik. Na njoj ćete pronaći vrijeme bogoslužja, video poruke, obavijesti i ponudu naše knjižnice. Stranicu ćemo dopunjavati postupno, pa navratite ponovno.</p>
         </div>
       </article>
     </div>
 
-    <p class="ph-note"><strong>Za odlučiti:</strong> hoće li se obavijesti dodavati ručno u <code>src/pages/novosti/</code> ili preko malog admin sučelja kasnije. Za sada je popis statičan.</p>
+    <!-- Pokazuje se tek kad obavijesti bude više od deset. -->
+    <div class="btn-row" style="margin-top:28px">
+      <button type="button" class="btn btn-ghost" data-load-more hidden>Učitaj još</button>
+    </div>
+
+    <p class="ph-note"><strong>Za ispuniti:</strong> slika uz obavijest, te ostale obavijesti. Stranica prikazuje deset po stranici, a gumb "Učitaj još" pojavljuje se sam kad ih bude više.</p>
   </div>
 </section>
 
@@ -219,8 +200,7 @@
 
     <div class="footer-col">
       <h3>Kontakt</h3>
-      <span class="footer-muted">Ul. Šibenske narodne glazbe 3</span>
-      <span class="footer-muted">22000 Šibenik, Hrvatska</span>
+      <a class="footer-address" href="https://maps.google.com/?cid=8294334769570048758" target="_blank" rel="noopener">Ul. Šibenske narodne glazbe 3<br>22000 Šibenik, Hrvatska</a>
       <a href="mailto:info@krscanskazajednicasibenik.hr">info@krscanskazajednicasibenik.hr</a>
       <span class="footer-muted" data-placeholder>Telefon dolazi ovdje</span>
     </div>
@@ -231,6 +211,6 @@
   </div>
 </footer>
 
-<script src="/script.js?v=c33ba0e00d" defer></script>
+<script src="/script.js?v=e116711cf9" defer></script>
 </body>
 </html>

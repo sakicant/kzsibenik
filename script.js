@@ -122,6 +122,42 @@
     }
   }
 
+  /* ------------------------------------------------------------- load more
+     Shows a fixed number of notices and reveals the next batch on demand.
+     Without JavaScript every notice stays visible and the button stays
+     hidden, which is the right way round: nothing is ever unreachable. */
+  doc.querySelectorAll("[data-news-list]").forEach(function (list) {
+    var size = parseInt(list.getAttribute("data-page-size"), 10) || 10;
+    var scope = list.parentElement || doc;
+    var btn = scope.querySelector("[data-load-more]");
+    var items = Array.prototype.slice.call(list.children);
+
+    if (items.length <= size) {
+      if (btn) { btn.hidden = true; }
+      return;
+    }
+
+    var shown = size;
+    var apply = function () {
+      items.forEach(function (el, i) { el.hidden = i >= shown; });
+      if (btn) { btn.hidden = shown >= items.length; }
+    };
+    apply();
+
+    if (!btn) { return; }
+    btn.addEventListener("click", function () {
+      var firstNew = items[shown];
+      shown += size;
+      apply();
+      // Send focus to the first notice just revealed, otherwise a keyboard
+      // user is left at a button that may have just disappeared.
+      if (firstNew) {
+        firstNew.setAttribute("tabindex", "-1");
+        firstNew.focus();
+      }
+    });
+  });
+
   /* -------------------------------------------------------------- carousel */
   doc.querySelectorAll("[data-carousel]").forEach(function (root) {
     var track = root.querySelector(".carousel-track");

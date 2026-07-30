@@ -45,7 +45,12 @@ grep -rn "data-placeholder\|ph-lines\|ph-note\|ph-media" src/pages/
       stripped from the exported WebP.
 
 **Novosti**
-- [ ] First few notices: title, date, short text, image
+- [ ] Image for the welcome notice, and the notices that follow it
+- [ ] Check the date on the welcome notice before launch - it currently reads
+      30 July 2026, which is the day it was written, not the day you go live
+- Done: the "Dobro došli na našu novu web stranicu" notice, shown on the news
+      page and on the home page. The list shows ten at a time and the "Učitaj
+      još" button appears on its own once there are more than ten.
 - Decided: notices and YouTube videos get managed through an admin panel at
       `/isusjekralj/`. Spec in [plans/admin-panel.md](plans/admin-panel.md).
       Needs PHP and MySQL on the FTP host, so it cannot be built against the
@@ -53,8 +58,9 @@ grep -rn "data-placeholder\|ph-lines\|ph-note\|ph-media" src/pages/
 
 **O nama**
 - [ ] Povijest: key years with what happened, old photographs if any
-- [ ] Vodstvo: portrait photos and short bios for the four elders; the whole
-      worship team and technical team sections are still placeholders
+- [ ] Vodstvo: portrait photos and short bios for the four elders. Four of the
+      five sections are still empty - Gostoprimstvo, Služba slavljenja, Dječja
+      služba and Tehnička služba all need names and roles.
 - [ ] Vjerovanje: the statements of faith with Bible references
 - [ ] Decide whether svjedočanstva becomes a fourth item in the dropdown
 
