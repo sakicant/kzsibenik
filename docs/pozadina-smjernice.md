@@ -1,158 +1,177 @@
-# Smjernice za izradu pozadine stranice
+# Smjernice za novu pozadinu stranice
 
-Kratko: treba mi **bešavni uzorak (seamless tile), prozirni PNG ili SVG, vrlo
-niskog kontrasta**. Boju i jačinu podešavam ja u CSS-u.
+Nova pozadina **u potpunosti zamjenjuje postojeću**. Ne dodaje se preko nje.
 
----
-
-## 1. Kako pozadina sada radi
-
-Pozadina nije obična slika iza sadržaja. Sastoji se od dva sloja koja stoje
-fiksno (ne pomiču se pri skrolanju):
-
-1. **Sloj boje** - blagi prijelaz iz svjetlije sive na vrhu u tamniju pri dnu:
-   - `#f3f1ee` (vrh)
-   - `#e9e7e3` (sredina)
-   - `#dcd9d4` (dno)
-2. **Sloj teksture** - vrlo sitan šum, jedva vidljiv, na 5% prozirnosti.
-
-Vaš uzorak zamjenjuje **sloj 2**. Sloj boje ostaje u CSS-u, pa ga mogu mijenjati
-bez diranja vaše grafike.
-
-**Zašto je to važno:** kartice i paneli na stranici su poluprozirni (bijela na
-66% prozirnosti). Sve što je u pozadini djelomično se probija kroz njih, ispod
-teksta. Zato uzorak mora biti miran.
+Još nije odlučeno hoće li to biti tekstura, grafika ili fotografija, pa su
+ovdje sva tri smjera. Zajednička pravila (dio 3 i 4) vrijede za sve.
 
 ---
 
-## 2. Format
+## 1. Što se točno mijenja
 
-| Format | Kada | Napomena |
-|---|---|---|
-| **SVG** | najbolje, ako je uzorak geometrijski | Sitan (par KB), oštar na svim ekranima, nema retina verzije |
-| **PNG s prozirnošću** | ako je uzorak crtan ili teksturiran | Treba i @2x verzija |
-| **WebP** | samo ako je uzorak fotografski (papir, platno, beton) | Šaljem li ja pretvaranje, pošaljite original |
+Sadašnja pozadina su dva sloja koja stoje fiksno i ne pomiču se pri skrolanju:
 
-**Ne JPEG.** Na ovako niskim kontrastima JPEG radi vidljive kvadratiće i pruge.
+1. **Boja** - prijelaz iz `#f3f1ee` (vrh) preko `#e9e7e3` u `#dcd9d4` (dno)
+2. **Tekstura** - vrlo sitan šum na 5% prozirnosti
 
-**Pošaljite s prozirnom pozadinom**, ne s upečenom bojom. Tako mogu podesiti i
-boju i jačinu, i ista datoteka radi ako kasnije promijenimo paletu.
+Oba nestaju. Ono što pošaljete postaje **osnovni sloj cijele stranice**, na
+svih 22 podstranice, na svakom uređaju.
 
----
+**Gdje se pozadina zapravo vidi:** sadržaj stranice stoji na poluprozirnim
+bijelim karticama i panelima (bijela na 66% prozirnosti). Pozadina se vidi u
+razmacima između njih, uz rubove, te **djelomično kroz same kartice, ispod
+teksta**. Nije to samo okvir oko sadržaja.
 
-## 3. Dimenzije
-
-### Bešavni uzorak (preporučeno)
-
-- **512 x 512 px** ili **600 x 600 px** na 1x
-- **1024 x 1024 px** ili **1200 x 1200 px** na 2x (za retina ekrane)
-- Ako je SVG, dimenzija nije bitna, samo neka je uzorak definiran kao ploča koja
-  se ponavlja
-
-Uzorak mora biti **stvarno bešavan**. Provjera: pomaknite sadržaj za 50% po
-horizontali i vertikali (u Photoshopu Filter > Other > Offset). Ako se vidi
-šav ili linija spoja, nije gotovo.
-
-### Ako radite jednu veliku sliku umjesto uzorka
-
-- **najmanje 2560 x 1440 px**, sigurnije 3200 x 1800
-- najviše **300 KB** kao WebP
-- Napomena: ovo je slabija opcija. Slika se rasteže preko cijelog ekrana, na
-  širokim monitorima gubi oštrinu, a na mobitelu se vidi samo dio.
+Tamni dijelovi (zaglavlje na naslovnoj, podnožje na svim stranicama) imaju
+svoju pozadinu, pa se tamo vaša grafika ne vidi. Radi se samo jedna verzija.
 
 ---
 
-## 4. Boje i kontrast (najvažniji dio)
+## 2. Tri moguća smjera
 
-Ovo je jedino mjesto gdje se lako pogriješi.
+### A. Tekstura (bešavni uzorak)
 
-- **Raspon svjetline unutar uzorka: najviše 8%.** Konkretno, ako je najsvjetlija
-  točka `#f4f2ef`, najtamnija ne smije biti tamnija od otprilike `#e0ded9`.
-- **Nikakve čiste crne ni bijele točke.**
-- **Zasićenost blizu nule.** Sive s toplim tonom pristaju uz postojeću paletu.
-  Hladne plavkaste sive će se tući s mjedenim naglaskom (`#8c7a52`).
-- Ako radite prozirni PNG: crtajte crnom na **8% do 15% prozirnosti**, ne jače.
-  Radije mi pošaljite prejako pa ja stišam, nego preslabo.
+Najsigurniji izbor. Papir, platno, žbuka, zrno, fine linije.
 
-**Zašto ovako strogo:** tekst na stranici je tamno siv (`#171614`) i mjeren je
-na omjeru kontrasta 7:1 prema podlozi. Pozadina koja varira više od par posto
-spušta taj omjer na dijelovima stranice i tekst postaje teže čitljiv na nekim
-mjestima, a ne na drugima. To je gore nego ravna pozadina.
+- **Dimenzije:** 512 x 512 px ili 1024 x 1024 px, plus @2x verzija
+- **Format:** PNG, ili SVG ako je geometrijski
+- **Težina:** ispod 60 KB
+- Mora biti **stvarno bešavan**. Provjera: pomaknite sadržaj za 50% vodoravno i
+  okomito (Photoshop: Filter > Other > Offset). Ako se vidi linija spoja,
+  nije gotovo.
+- Može doći **prozirno**, pa boju i dalje držim u CSS-u i lako je mijenjam, ili
+  **s upečenom bojom** ako uzorak i boja idu zajedno. Recite koje od toga.
 
----
+### B. Grafika (ilustracija ili uzorak)
 
-## 5. Gustoća i veličina motiva
+Crtani motiv, geometrija, apstraktni oblici.
 
-Dva sigurna smjera:
+- **Ako se ponavlja:** iste dimenzije kao pod A
+- **Ako je jedna velika kompozicija:** najmanje 2560 x 1440 px, sigurnije
+  3200 x 1800 px
+- **Format:** SVG kad god je moguće, inače PNG ili WebP
+- **Težina:** ispod 150 KB
+- Motiv ne smije imati "gore" i "dolje" koje je bitno. Pozadina stoji fiksno
+  dok sadržaj klizi preko nje, a stranice su različitih duljina.
 
-- **Sitno i gusto** - zrno, tkanina, papir, fine linije. Motiv ispod 4 px.
-  Doima se kao tekstura materijala, ne kao uzorak.
-- **Veliko i vrlo blago** - široki oblici preko 400 px, na samom rubu vidljivosti.
+### C. Fotografija
 
-**Izbjegavajte sredinu** - motive od otprilike 20 do 150 px. To je veličina koja
-najviše smeta čitanju jer se natječe s recima teksta.
+Najefektnije, ali traži najviše pažnje.
 
-Provjerite kako izgleda na mobitelu. Uzorak koji je fin na 1440 px zna postati
-napadan na 375 px.
+- **Dimenzije:** najmanje 2560 x 1440 px, poželjno 3200 x 1800 px
+- **Uz to i okomita verzija za mobitel:** oko 1200 x 1800 px. Vodoravna
+  fotografija na uskom visokom ekranu pokaže samo mali isječak sredine, pa
+  kompozicija propadne.
+- **Format:** pošaljite original (JPEG iz aparata je u redu), pretvaranje u
+  WebP i smanjivanje radim ja
+- **Težina nakon obrade:** ispod 250 KB za desktop, ispod 120 KB za mobitel
+- **Bez glavnog motiva.** Nešto mirno i ujednačeno: nebo, more, kamen, zid,
+  magla, izmaglica nad gradom. Lice ili prepoznatljiv prizor iza teksta smeta
+  i čitanju i samoj fotografiji.
 
----
-
-## 6. Što izbjegavati
-
-- Tekst, slova, logotip. Znak Š se već pojavljuje kao vodeni žig na svakoj
-  sekciji (lijevo, desno, sredina, u krug), pa bi se tukli.
-- Oštre ravne linije po rubu ploče, tamo nastaju šavovi.
-- Prijelaze boje upečene u sliku, rade pruge (banding). Prijelaz radim u CSS-u.
-- Prepoznatljive fotografije. Pozadina ide ispod svega, na svim stranicama.
-- Uzorak koji se očito ponavlja. Ako se u pogledu na cijeli ekran broji koliko
-  puta se nešto ponovilo, ploča je premala ili motiv prejak.
-
----
-
-## 7. Što mi predati
-
-1. Uzorak, prozirni PNG na 1x i 2x, ili SVG
-2. Ako imate, izvornu datoteku (AI, PSD, Figma) za slučaj prepravke
-3. Jednu sliku "kako bi trebalo izgledati" na cijelom ekranu, da znam jesam li
-   dobro pogodio jačinu
-
-Nazivi datoteka: `bg-tile.png`, `bg-tile@2x.png`, `bg-tile.svg`. Idu u
-`assets/img/`.
+**Preporuka:** ako niste sigurni, tekstura ili vrlo mirna fotografija.
+Nagurana grafika izgleda dobro na jednoj slici, a zamori nakon treće
+podstranice.
 
 ---
 
-## 8. Kako ću to ugraditi
+## 3. Kontrast, i zašto je to ovdje glavno pitanje
 
-Zamjena je jedan blok u `styles.css`:
+Tekst na stranici je tamno siv (`#171614`) i sada je izmjeren na omjeru
+kontrasta 7:1. Minimum je 4.5:1.
+
+Dvije stvari koje treba znati:
+
+**Zatamnjenje ili posvjetljenje radim ja u CSS-u.** Ne morate fotografiju
+unaprijed blijediti ni tamniti. Pošaljite je normalnu, ja preko nje stavljam
+sloj koji podešavam dok mjerenje ne prođe. Isto radim i na naslovnoj, gdje je
+preko fotografije tamni sloj.
+
+**Ali podloga ispod teksta mora biti mirna.** Sloj preko nje rješava koliko je
+svijetla ili tamna, ne rješava koliko je nemirna. Ako pozadina na malom
+razmaku skače sa svijetlog na tamno, tekst je na jednom mjestu čitljiv, a
+dva centimetra dalje nije. To je gore od ravne boje.
+
+Praktično pravilo: **što je pozadina nemirnija, to kartice moraju biti
+neprozirnije.** Sada su na 66%. Uz nemirnu pozadinu moram ih dići prema 90%,
+a tada se kroz njih ionako više ništa ne vidi. Bujna pozadina tako sama sebe
+poništi. Mirnija pozadina se zapravo bolje vidi.
+
+### Ako pozadina bude tamna
+
+To nije samo zamjena slike. Cijela paleta se okreće: tekst, kartice, gumbi,
+obrasci, sve prelazi na svijetlo na tamnom, na svih 22 podstranice. To je
+izvediva ali znatno veća prepravka. Recite unaprijed ako idete u tom smjeru.
+
+---
+
+## 4. Zajednička pravila
+
+- **Boje:** sive i neutralne pristaju uz postojeći mjedeni naglasak
+  (`#8c7a52`). Hladne plavkaste sive se s njim tuku. Jake zasićene boje ne.
+- **Bez teksta i logotipa.** Znak Š se već pojavljuje kao vodeni žig na svakoj
+  sekciji, lijevo pa desno pa u sredini, i tukli bi se.
+- **Bez upečenih prijelaza boje** u rasterskoj slici, rade vidljive pruge
+  (banding). Prijelaze radim u CSS-u.
+- **Ne JPEG za teksturu i grafiku.** Na niskim kontrastima JPEG radi vidljive
+  kvadratiće. Za fotografiju je JPEG original u redu.
+- **Provjerite na 375 px širine.** Uzorak koji je fin na velikom monitoru zna
+  na mobitelu postati napadan.
+- **Težina se plaća na svakoj stranici.** Pozadina se učita svakom posjetitelju,
+  na svakoj podstranici. Zato gornji limiti.
+
+---
+
+## 5. Što mi predati
+
+1. Datoteku prema odabranom smjeru (A, B ili C), s @2x ili mobilnom verzijom
+   gdje piše da treba
+2. Za teksturu: recite je li prozirna ili nosi boju
+3. Izvornu datoteku (AI, PSD, Figma) ako postoji, za slučaj prepravke
+4. Jednu sliku "kako zamišljate da izgleda" na cijelom ekranu, da znam jesam li
+   pogodio jačinu
+
+Nazivi: `bg.png` / `bg.svg` / `bg.jpg`, uz `bg@2x.png` ili `bg-mobile.jpg`.
+Idu u `assets/img/`.
+
+---
+
+## 6. Kako ću to ugraditi
+
+Zamjenjuje se jedan blok u `styles.css`. Za uzorak:
 
 ```css
-body::after {
-  background-image: url("/assets/img/bg-tile.png");
+body::before {
+  background-image: url("/assets/img/bg.png");
   background-repeat: repeat;
-  background-size: 512px 512px;   /* veličina ploče na 1x */
-  opacity: .06;                    /* ovdje podešavam jačinu */
+  background-size: 512px 512px;
 }
 ```
 
-Jačinu i veličinu ploče podešavam nakon što vidim kako izgleda uživo, pa oko
-toga ne morate brinuti. Također ću ponovno izmjeriti kontrast teksta na svim
-stranicama prije nego što potvrdim da je gotovo.
+Za fotografiju ili veliku kompoziciju, uz sloj za podešavanje svjetline:
+
+```css
+body::before {
+  background-image:
+    linear-gradient(rgba(246,245,242,.72), rgba(246,245,242,.72)),
+    url("/assets/img/bg.jpg");
+  background-size: auto, cover;
+  background-position: center;
+}
+```
+
+Nakon ugradnje ponovno mjerim kontrast teksta na svim stranicama i javljam
+brojku prije nego što kažem da je gotovo.
 
 ---
 
-## 9. Brza provjera prije slanja
+## 7. Provjera prije slanja
 
-- [ ] Pomak za 50% ne otkriva šav
-- [ ] Razlika najsvjetlije i najtamnije točke ispod 8%
-- [ ] Nema čiste crne ni bijele
-- [ ] Nema teksta ni logotipa
-- [ ] Prozirna pozadina, boja nije upečena
-- [ ] PNG ili SVG, ne JPEG
+- [ ] Ako se ponavlja: pomak za 50% ne otkriva šav
+- [ ] Podloga je mirna ispod teksta, bez naglih skokova svijetlo/tamno
+- [ ] Nema teksta, slova ni logotipa
+- [ ] Nema jakih zasićenih boja
+- [ ] Za fotografiju: poslana i okomita verzija za mobitel
+- [ ] Za fotografiju: nema glavnog motiva koji traži pažnju
 - [ ] Izgleda mirno i na 375 px širine
-
----
-
-## Napomena o tamnim dijelovima
-
-Zaglavlje na naslovnoj i podnožje na svim stranicama su tamni i imaju svoju
-pozadinu, pa se ovaj uzorak tamo ne vidi. Trebate raditi samo svijetlu verziju.
+- [ ] Ako je pozadina tamna: dogovoreno unaprijed, jer mijenja cijelu paletu
