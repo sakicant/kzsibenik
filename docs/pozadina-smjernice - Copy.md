@@ -20,8 +20,6 @@ koja boja.
    pozadinu.
 5. **Pošaljite uz nju jednu ili dvije boje izvučene iz same grafike.** Iz njih
    radim naglasak i boju logotipa, pa sve drži zajedno.
-6. **Dvije verzije: vodoravna za desktop, okomita za mobitel.** Nisu to iste
-   slike u dvije veličine, nego dva kadra. Detalji su u dijelu 3.
 
 Iz toga slažem pet vrijednosti koje čine cijelu stranicu: pozadina, ploha
 kartica, tekst, naglasak i tamna ploha za podnožje. Logo ide u jednoj punoj
@@ -34,7 +32,7 @@ Ostatak dokumenta su tehnički detalji po formatima, za onoga tko crta.
 Nova pozadina **u potpunosti zamjenjuje postojeću**. Ne dodaje se preko nje.
 
 Još nije odlučeno hoće li to biti tekstura, grafika ili fotografija, pa su
-ovdje sva tri smjera. Dijelovi 3, 4 i 5 vrijede za sve.
+ovdje sva tri smjera. Zajednička pravila (dio 3 i 4) vrijede za sve.
 
 ---
 
@@ -78,8 +76,10 @@ Najsigurniji izbor. Papir, platno, žbuka, zrno, fine linije.
 Crtani motiv, geometrija, apstraktni oblici.
 
 - **Ako se ponavlja:** iste dimenzije kao pod A
-- **Ako je jedna velika kompozicija:** dvije verzije, vidi dio 3
+- **Ako je jedna velika kompozicija:** najmanje 2560 x 1440 px, sigurnije
+  3200 x 1800 px
 - **Format:** SVG kad god je moguće, inače PNG ili WebP
+- **Težina:** ispod 150 KB
 - Motiv ne smije imati "gore" i "dolje" koje je bitno. Pozadina stoji fiksno
   dok sadržaj klizi preko nje, a stranice su različitih duljina.
 
@@ -87,9 +87,13 @@ Crtani motiv, geometrija, apstraktni oblici.
 
 Najefektnije, ali traži najviše pažnje.
 
-- **Dimenzije:** dvije verzije, vidi dio 3
+- **Dimenzije:** najmanje 2560 x 1440 px, poželjno 3200 x 1800 px
+- **Uz to i okomita verzija za mobitel:** oko 1200 x 1800 px. Vodoravna
+  fotografija na uskom visokom ekranu pokaže samo mali isječak sredine, pa
+  kompozicija propadne.
 - **Format:** pošaljite original (JPEG iz aparata je u redu), pretvaranje u
   WebP i smanjivanje radim ja
+- **Težina nakon obrade:** ispod 250 KB za desktop, ispod 120 KB za mobitel
 - **Bez glavnog motiva.** Nešto mirno i ujednačeno: nebo, more, kamen, zid,
   magla, izmaglica nad gradom. Lice ili prepoznatljiv prizor iza teksta smeta
   i čitanju i samoj fotografiji.
@@ -100,34 +104,7 @@ podstranice.
 
 ---
 
-## 3. Dvije verzije: desktop i mobitel
-
-Pozadina se prebacuje na širini **860 px**. To je isti prijelom na kojem se već
-mijenjaju izbornik i fotografija na naslovnoj.
-
-| | Desktop | Mobitel |
-|---|---|---|
-| Kadar | vodoravni, 16:9 | okomiti, otprilike 9:19 |
-| Dimenzije | 3200 x 1800 px | 1200 x 2400 px |
-| Težina nakon obrade | ispod 250 KB | ispod 120 KB |
-
-**Bešavni uzorak (smjer A) treba samo jednu datoteku.** Ponavlja se sam po
-sebi, pa mu omjer ekrana ne smeta. Na mobitelu samo smanjim ploču, i to radim u
-CSS-u. Pošaljite jednu datoteku i njezinu @2x verziju.
-
-**Grafika i fotografija trebaju dvije.** Nisu to iste slike u dvije veličine,
-nego dva kadra. Vodoravna slika stisnuta u uski visoki ekran pokaže samo usku
-traku po sredini, a sve što je bilo lijevo i desno nestane. Zato mobilnu
-verziju kadrirajte posebno, nemojte je automatski rezati iz vodoravne.
-
-**Držite bitno u sredini, na obje verzije.** Pozadina se razvlači tako da
-pokrije cijeli ekran, pa se rubovi režu: na širokim monitorima gubi se gore i
-dolje, na uskima lijevo i desno. Uz same rubove ne stavljajte ništa što se mora
-vidjeti.
-
----
-
-## 4. Kontrast, i zašto je to ovdje glavno pitanje
+## 3. Kontrast, i zašto je to ovdje glavno pitanje
 
 Tekst na stranici je tamno siv (`#171614`) i sada je izmjeren na omjeru
 kontrasta 7:1. Minimum je 4.5:1.
@@ -157,7 +134,7 @@ izvediva ali znatno veća prepravka. Recite unaprijed ako idete u tom smjeru.
 
 ---
 
-## 5. Zajednička pravila
+## 4. Zajednička pravila
 
 - **Boje:** sive i neutralne pristaju uz postojeći mjedeni naglasak
   (`#8c7a52`). Hladne plavkaste sive se s njim tuku. Jake zasićene boje ne.
@@ -174,70 +151,56 @@ izvediva ali znatno veća prepravka. Recite unaprijed ako idete u tom smjeru.
 
 ---
 
-## 6. Što mi predati
+## 5. Što mi predati
 
-1. **Uzorak (A):** jedna datoteka i njezina @2x verzija
-   **Grafika ili fotografija (B, C):** dvije datoteke, vodoravna i okomita
-2. Jednu ili dvije boje izvučene iz grafike, za naglasak i logo
-3. Za teksturu: recite je li prozirna ili nosi boju
-4. Izvornu datoteku (AI, PSD, Figma) ako postoji, za slučaj prepravke
-5. Jednu sliku "kako zamišljate da izgleda" na cijelom ekranu, da znam jesam li
+1. Datoteku prema odabranom smjeru (A, B ili C), s @2x ili mobilnom verzijom
+   gdje piše da treba
+2. Za teksturu: recite je li prozirna ili nosi boju
+3. Izvornu datoteku (AI, PSD, Figma) ako postoji, za slučaj prepravke
+4. Jednu sliku "kako zamišljate da izgleda" na cijelom ekranu, da znam jesam li
    pogodio jačinu
 
-Nazivi: `bg-desktop.jpg` i `bg-mobile.jpg`, odnosno `bg-tile.png` i
-`bg-tile@2x.png` za uzorak. Idu u `assets/img/`.
+Nazivi: `bg.png` / `bg.svg` / `bg.jpg`, uz `bg@2x.png` ili `bg-mobile.jpg`.
+Idu u `assets/img/`.
 
 ---
 
-## 7. Kako ću to ugraditi
+## 6. Kako ću to ugraditi
 
 Zamjenjuje se jedan blok u `styles.css`. Za uzorak:
 
 ```css
 body::before {
-  background-image: url("/assets/img/bg-tile.png");
+  background-image: url("/assets/img/bg.png");
   background-repeat: repeat;
   background-size: 512px 512px;
 }
-@media (max-width: 860px) {
-  body::before { background-size: 320px 320px; }   /* manja ploča na mobitelu */
-}
 ```
 
-Za fotografiju ili veliku kompoziciju, uz sloj za podešavanje svjetline i
-zamjenu kadra na mobitelu:
+Za fotografiju ili veliku kompoziciju, uz sloj za podešavanje svjetline:
 
 ```css
 body::before {
   background-image:
     linear-gradient(rgba(246,245,242,.72), rgba(246,245,242,.72)),
-    url("/assets/img/bg-desktop.jpg");
+    url("/assets/img/bg.jpg");
   background-size: auto, cover;
   background-position: center;
 }
-@media (max-width: 860px) {
-  body::before {
-    background-image:
-      linear-gradient(rgba(246,245,242,.72), rgba(246,245,242,.72)),
-      url("/assets/img/bg-mobile.jpg");
-  }
-}
 ```
 
-Nakon ugradnje ponovno mjerim kontrast teksta na svim stranicama, i na desktopu
-i na mobilnoj širini, pa javljam brojke prije nego što kažem da je gotovo.
+Nakon ugradnje ponovno mjerim kontrast teksta na svim stranicama i javljam
+brojku prije nego što kažem da je gotovo.
 
 ---
 
-## 8. Provjera prije slanja
+## 7. Provjera prije slanja
 
 - [ ] Ako se ponavlja: pomak za 50% ne otkriva šav
 - [ ] Podloga je mirna ispod teksta, bez naglih skokova svijetlo/tamno
 - [ ] Nema teksta, slova ni logotipa
 - [ ] Nema jakih zasićenih boja
-- [ ] Za grafiku i fotografiju: poslane obje verzije, vodoravna i okomita
-- [ ] Mobilna verzija je posebno kadrirana, nije automatski izrezana
-- [ ] Ništa bitno ne stoji uz same rubove, na obje verzije
+- [ ] Za fotografiju: poslana i okomita verzija za mobitel
 - [ ] Za fotografiju: nema glavnog motiva koji traži pažnju
 - [ ] Izgleda mirno i na 375 px širine
 - [ ] Ako je pozadina tamna: dogovoreno unaprijed, jer mijenja cijelu paletu
