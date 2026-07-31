@@ -62,9 +62,13 @@ grep -rn "data-placeholder\|ph-lines\|ph-note\|ph-media" src/pages/
 
 **O nama**
 - [ ] Povijest: key years with what happened, old photographs if any
-- [ ] Vodstvo: portrait photos and short bios for the four elders and for
-      Mateja Šakić. Four of the six sections are still empty - Gostoprimstvo,
-      Služba slavljenja, Dječja služba and Tehnička služba need names and roles.
+- [ ] Vodstvo: portrait photographs and short descriptions for everyone. All
+      six sections are now named except one slot.
+- [ ] Second name in Gostoprimstvo - only Matej Grubišić was supplied but two
+      people were mentioned earlier, so the second card is still a placeholder.
+      Remove it if he serves on his own.
+- [ ] Whether anyone besides the elders and Mateja Šakić has a role worth
+      naming. The rest show their name alone, since no role was given.
 - [ ] Mateja's role currently reads "Vodi knjižnicu" rather than a title,
       because the gendered forms in Croatian would be a guess. Say which you
       want and it changes in one line.
