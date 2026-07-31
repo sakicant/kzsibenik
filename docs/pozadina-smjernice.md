@@ -1,5 +1,34 @@
 # Smjernice za novu pozadinu stranice
 
+## Ukratko: pozadina ide prva, boje za njom
+
+Sadašnja crno-bijela shema je radna verzija. Kad se odluči pozadina, iz nje
+izvodimo logo, naglasak i sve ostalo. Zato za pozadinu vrijedi samo pet
+pravila, a unutar njih je sve slobodno: tekstura, grafika, fotografija, bilo
+koja boja.
+
+1. **Prvo odlučite: svijetla ili tamna.** Ta jedna odluka povlači sve ostalo.
+2. **Držite je na jednom kraju skale, ne u sredini.** Svijetlija od otprilike
+   `#a0a0a0`, ili tamnija od otprilike `#595959`. Sredina je jedino što ne
+   radi: na srednje sivoj podlozi ni tamni ni svijetli tekst nemaju dovoljno
+   kontrasta. Na `#787878` tamni tekst daje 4.1:1, a bijeli 4.4:1, dakle oba
+   padaju ispod minimuma od 4.5:1.
+3. **Neka bude mirna.** Bez naglih skokova svijetlo/tamno na malom razmaku.
+   Koliko je svijetla ili tamna podešavam ja, koliko je nemirna ne mogu.
+4. **Malo zasićenja.** Pozadina je najveća površina na stranici. Jaka boja
+   preko cijelog ekrana suzi sve ostale izbore. Boju stavite u naglasak, ne u
+   pozadinu.
+5. **Pošaljite uz nju jednu ili dvije boje izvučene iz same grafike.** Iz njih
+   radim naglasak i boju logotipa, pa sve drži zajedno.
+
+Iz toga slažem pet vrijednosti koje čine cijelu stranicu: pozadina, ploha
+kartica, tekst, naglasak i tamna ploha za podnožje. Logo ide u jednoj punoj
+boji koja se dovoljno odvaja od pozadine.
+
+Ostatak dokumenta su tehnički detalji po formatima, za onoga tko crta.
+
+---
+
 Nova pozadina **u potpunosti zamjenjuje postojeću**. Ne dodaje se preko nje.
 
 Još nije odlučeno hoće li to biti tekstura, grafika ili fotografija, pa su
